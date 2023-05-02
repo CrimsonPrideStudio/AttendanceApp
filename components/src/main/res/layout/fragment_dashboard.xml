@@ -3,12 +3,67 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".Dashboard">
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    tools:context=".Fragments.Dashboard">
 
-    <!-- TODO: Update blank fragment layout -->
-    <TextView
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:text="@string/hello_blank_fragment" />
+
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:padding="20dp">
+            <LinearLayout
+                android:id="@+id/linearLayout"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="30px"
+                android:orientation="horizontal">
+
+                <Spinner
+                    android:id="@+id/yearHome"
+                    android:layout_width="100dp"
+                    android:layout_height="50dp"
+                    android:layout_alignParentEnd="true"
+                    android:backgroundTint="@color/Radical_Red"
+                    android:dropDownWidth="wrap_content"
+                    android:gravity="center" />
+
+                <Space
+                    android:layout_width="0dp"
+                    android:layout_height="0dp"
+                    android:layout_weight="1" />
+
+                <Spinner
+                    android:id="@+id/streamHome"
+                    android:layout_width="150dp"
+                    android:layout_height="50dp"
+                    android:layout_alignParentEnd="true"
+                    android:backgroundTint="@color/Radical_Red"
+                    android:dropDownWidth="wrap_content"
+                    android:gravity="center" />
+            </LinearLayout>
+
+            <com.google.android.material.floatingactionbutton.FloatingActionButton
+                android:id="@+id/addClassFloatingButton"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignParentEnd="true"
+                android:layout_alignParentBottom="true"
+                android:layout_marginStart="10dp"
+                android:layout_marginTop="10dp"
+                android:layout_marginEnd="10dp"
+                android:layout_marginBottom="10dp"
+                android:backgroundTint="@color/white"
+                android:contentDescription="@string/hello_blank_fragment"
+                android:src="@drawable/add"
+                app:tint="@color/Radical_Red" />
+
+            <androidx.recyclerview.widget.RecyclerView
+                android:id="@+id/recycleViewHome"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_below="@+id/linearLayout"
+                tools:listitem="@layout/home_card_view"
+                android:layout_marginTop="0dp" />
+        </RelativeLayout>
 
 </FrameLayout>
