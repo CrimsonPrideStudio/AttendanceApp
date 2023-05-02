@@ -1,0 +1,28 @@
+<resources xmlns:tools="http://schemas.android.com/tools">
+    <!-- Base application theme. -->
+    <style name="Theme.Attendance_APP" parent="Theme.MaterialComponents.DayNight.NoActionBar">
+        <!-- Primary brand color. -->
+        <item name="colorPrimary">@color/Radical_Red</item>
+        <item name="colorPrimaryVariant">@color/Violent_Violet</item>
+        <item name="colorOnPrimary">@color/black</item>
+        <!-- Secondary brand color. -->
+        <item name="colorSecondary">@color/Radical_Red</item>
+        <item name="colorSecondaryVariant">@color/Indigo</item>
+        <item name="colorOnSecondary">@color/white</item>
+
+        <!-- Status bar color. -->
+        <item name="android:statusBarColor">@color/black</item>
+        <!-- Customize your theme here. -->
+    </style>
+<style name="customAlert" parent="Theme.AppCompat.Light.Dialog.Alert">
+    <item name="android:windowBackground">@drawable/circular_border</item>
+</style>
+    <style name="Theme.Attendance_APP.NoActionBar">
+        <item name="windowActionBar">false</item>
+        <item name="windowNoTitle">true</item>
+    </style>
+
+    <style name="Theme.Attendance_APP.AppBarOverlay" parent="ThemeOverlay.AppCompat.Dark.ActionBar" />
+
+    <style name="Theme.Attendance_APP.PopupOverlay" parent="ThemeOverlay.AppCompat.Light" />
+</resources>
