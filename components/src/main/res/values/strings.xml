@@ -11,12 +11,14 @@
         <item>7th Semester</item>
         <item>8th Semester</item>
     </string-array>
+
     <string-array name="years">
         <item>1st Year</item>
         <item>2nd Year</item>
         <item>3rd Year</item>
         <item>4th Year</item>
     </string-array>
+
     <string-array name="streams">
         <item>All</item>
         <item>CSE</item>
@@ -24,6 +26,7 @@
         <item>Mechanical</item>
         <item>Bio-Tech</item>
     </string-array>
+
     <string name="title_activity_main2">MainActivity2</string>
     <string name="navigation_drawer_open">Open navigation drawer</string>
     <string name="navigation_drawer_close">Close navigation drawer</string>
@@ -48,4 +51,5 @@
     <!-- TODO: Remove or change this placeholder text -->
     <string name="hello_blank_fragment">Hello blank fragment</string>
     <string name="start">Start</string>
+    <string name="floatingactiobbuttonfor_adding_class_and_data">FLoatingActiobButtonFor Adding Class and Data</string>
 </resources>
