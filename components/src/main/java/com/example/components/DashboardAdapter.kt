@@ -35,12 +35,12 @@ class DashboardAdapter(val context: Context, private val subjects: DashboardData
     }
 
     override fun onBindViewHolder(holder: ClassViewHolder, position: Int) {
-        val data = subjects[position];
+        val data = subjects[position]
         holder.subjectAndSemText.text = data.Subject + data.semester
-        holder.teacherNameText.text = data.teacher;
+        holder.teacherNameText.text = data.teacher
         holder.lastModifiedText.text = data.Update_Date
-        holder.totalStudents.text = data.Total_Student.toString();
-        holder.presentStudents.text = data.Present.toString();
+        holder.totalStudents.text = data.Total_Student.toString()
+        holder.presentStudents.text = data.Present.toString()
     }
 
     override fun getItemCount(): Int {

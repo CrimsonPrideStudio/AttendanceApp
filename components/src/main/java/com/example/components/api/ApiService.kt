@@ -12,6 +12,8 @@ import retrofit2.http.GET
 interface ApiInterface {
     @GET("/subjects")
     suspend fun getDashboardData():Response<DashboardData>
+
+
 }
 object ApiService{
      var apiInterface: ApiInterface

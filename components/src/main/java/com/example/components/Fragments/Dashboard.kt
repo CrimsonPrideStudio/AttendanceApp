@@ -21,63 +21,74 @@ import kotlinx.coroutines.launch
 import kotlinx.coroutines.withContext
 
 
-class Dashboard : Fragment(),AdapterView.OnItemSelectedListener{
+class Dashboard : Fragment(), AdapterView.OnItemSelectedListener {
 
     private lateinit var layoutManager: RecyclerView.LayoutManager
     private lateinit var dashboardData: DashboardData
-    private lateinit var binding :FragmentDashboardBinding
+    private lateinit var binding: FragmentDashboardBinding
+
     @RequiresApi(Build.VERSION_CODES.O)
-    override  fun onCreateView(
+    override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View {
-         binding = FragmentDashboardBinding.inflate(layoutInflater)
+        binding = FragmentDashboardBinding.inflate(layoutInflater)
 
-   getDashboardData()
+        getDashboardData()
+        hideFabButtonOnStudentApp();
         return binding.root
     }
-  private fun getDashboardData(){
 
-    val scope = CoroutineScope(Dispatchers.IO)
-    scope.launch {
-        try {
-
-            val response = ApiService.apiInterface.getDashboardData()
-            if (response.isSuccessful) {
-                dashboardData = response.body()!!
-                Log.e("DashboardData",dashboardData.toString())
-                withContext(Dispatchers.Main) {
-                    binding.apply {
-                        layoutManager = LinearLayoutManager(activity)
-                        recycleViewHome.layoutManager = layoutManager
-                        val adapter = DashboardAdapter(requireContext(),dashboardData)
-                        recycleViewHome.adapter = adapter
-                        adapter.setOnItemClickListener(object : DashboardAdapter.OnnItemClickListener{
-                            override fun onItemClick(position: Int) {
-                                Log.e("Added","Clicked")
-                            }
-
-                        })
-                    }
-                }
-                // Process the dashboardData object here
-            } else {
-                Log.e("DashboardData","Error")
-                // Handle the error here
+    private fun hideFabButtonOnStudentApp(){
+        if(requireContext().packageName.contains("student")){
+            binding.apply {
+                addClassFloatingButton.hide()
             }
-        } catch (e: Exception) {
-            Log.e("DashboardData",e.toString())
-            // Handle the exception here
         }
     }
-}
+
+    private fun getDashboardData() {
+        val scope = CoroutineScope(Dispatchers.IO)
+        scope.launch {
+            try {
+
+                val response = ApiService.apiInterface.getDashboardData()
+                if (response.isSuccessful) {
+                    dashboardData = response.body()!!
+                    Log.e("DashboardData", dashboardData.toString())
+                    withContext(Dispatchers.Main) {
+                        binding.apply {
+                            layoutManager = LinearLayoutManager(activity)
+                            recycleViewHome.layoutManager = layoutManager
+                            val adapter = DashboardAdapter(requireContext(), dashboardData)
+                            recycleViewHome.adapter = adapter
+                            adapter.setOnItemClickListener(object :
+                                DashboardAdapter.OnnItemClickListener {
+                                override fun onItemClick(position: Int) {
+                                    Log.e("Added", "Clicked")
+                                }
+
+                            })
+                        }
+                    }
+                    // Process the dashboardData object here
+                } else {
+                    Log.e("DashboardData", "Error")
+                    // Handle the error here
+                }
+            } catch (e: Exception) {
+                Log.e("DashboardData", e.toString())
+                // Handle the exception here
+            }
+        }
+    }
 
     override fun onItemSelected(parent: AdapterView<*>?, view: View?, position: Int, id: Long) {
-        TODO("Not yet implemented")
+        Log.e("This", "Selected")
     }
 
     override fun onNothingSelected(parent: AdapterView<*>?) {
-        TODO("Not yet implemented")
+        Log.e("This", "Nothing Selected")
     }
 }
 
