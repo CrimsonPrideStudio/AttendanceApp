@@ -20,9 +20,11 @@
 
                 <Spinner
                     android:id="@+id/yearHome"
-                    android:layout_width="100dp"
+                    android:layout_width="170dp"
+                    android:autofillHints="Semester"
                     android:layout_height="50dp"
                     android:layout_alignParentEnd="true"
+                    android:background="@drawable/rectangular_filled_border"
                     android:backgroundTint="@color/Radical_Red"
                     android:dropDownWidth="wrap_content"
                     android:gravity="center" />
@@ -34,28 +36,16 @@
 
                 <Spinner
                     android:id="@+id/streamHome"
-                    android:layout_width="150dp"
+                    android:layout_width="170dp"
+                    android:autofillHints="Stream"
                     android:layout_height="50dp"
+                    android:background="@drawable/rectangularborder"
                     android:layout_alignParentEnd="true"
                     android:backgroundTint="@color/Radical_Red"
                     android:dropDownWidth="wrap_content"
                     android:gravity="center" />
             </LinearLayout>
 
-            <com.google.android.material.floatingactionbutton.FloatingActionButton
-                android:id="@+id/addClassFloatingButton"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_alignParentEnd="true"
-                android:layout_alignParentBottom="true"
-                android:layout_marginStart="10dp"
-                android:layout_marginTop="10dp"
-                android:layout_marginEnd="10dp"
-                android:layout_marginBottom="10dp"
-                android:backgroundTint="@color/white"
-                android:contentDescription="@string/hello_blank_fragment"
-                android:src="@drawable/add"
-                app:tint="@color/Radical_Red" />
 
             <androidx.recyclerview.widget.RecyclerView
                 android:id="@+id/recycleViewHome"
