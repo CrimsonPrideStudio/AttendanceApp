@@ -12,6 +12,7 @@ import androidx.fragment.app.Fragment
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.example.components.DashboardAdapter
+import com.example.components.R
 import com.example.components.api.ApiService
 import com.example.components.model.DashboardData
 import com.example.components.databinding.FragmentDashboardBinding
@@ -26,21 +27,51 @@ class Dashboard : Fragment(), AdapterView.OnItemSelectedListener {
     private lateinit var layoutManager: RecyclerView.LayoutManager
     private lateinit var dashboardData: DashboardData
     private lateinit var binding: FragmentDashboardBinding
+    private var stream:String =  "All"
+    private var semester:Int = 0
 
-    @RequiresApi(Build.VERSION_CODES.O)
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View {
         binding = FragmentDashboardBinding.inflate(layoutInflater)
 
-        getDashboardData()
+        initializeSpinners()
         hideFabButtonOnStudentApp();
+
+
+
         return binding.root
     }
 
-    private fun hideFabButtonOnStudentApp(){
-        if(requireContext().packageName.contains("student")){
+    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
+        super.onViewCreated(view, savedInstanceState)
+        getDashboardData()
+    }
+    private fun initializeSpinners() {
+        val streamAdapter: ArrayAdapter<CharSequence> = ArrayAdapter.createFromResource(
+            requireContext(),
+            R.array.streams,
+            android.R.layout.simple_spinner_item
+        )
+        val yearAdapter: ArrayAdapter<CharSequence> = ArrayAdapter.createFromResource(
+            requireContext(),
+            R.array.semesters,
+            android.R.layout.simple_spinner_item
+        )
+        streamAdapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item)
+        yearAdapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item)
+
+        binding.yearHome.adapter = yearAdapter
+        binding.yearHome.onItemSelectedListener = this
+        binding.streamHome.adapter = streamAdapter
+        binding.streamHome.onItemSelectedListener = this
+
+
+    }
+
+    private fun hideFabButtonOnStudentApp() {
+        if (requireContext().packageName.contains("student")) {
             binding.apply {
                 addClassFloatingButton.hide()
             }
@@ -52,7 +83,7 @@ class Dashboard : Fragment(), AdapterView.OnItemSelectedListener {
         scope.launch {
             try {
 
-                val response = ApiService.apiInterface.getDashboardData()
+                val response = ApiService.apiInterface.getDashboardData(semester, stream)
                 if (response.isSuccessful) {
                     dashboardData = response.body()!!
                     Log.e("DashboardData", dashboardData.toString())
@@ -73,7 +104,7 @@ class Dashboard : Fragment(), AdapterView.OnItemSelectedListener {
                     }
                     // Process the dashboardData object here
                 } else {
-                    Log.e("DashboardData", "Error")
+                    Log.e("DashboardData", response.toString())
                     // Handle the error here
                 }
             } catch (e: Exception) {
@@ -84,7 +115,12 @@ class Dashboard : Fragment(), AdapterView.OnItemSelectedListener {
     }
 
     override fun onItemSelected(parent: AdapterView<*>?, view: View?, position: Int, id: Long) {
-        Log.e("This", "Selected")
+        if(parent.toString().contains("yearHome")){
+            semester = position
+        }
+        stream = binding.streamHome.selectedItem.toString()
+        getDashboardData()
+
     }
 
     override fun onNothingSelected(parent: AdapterView<*>?) {

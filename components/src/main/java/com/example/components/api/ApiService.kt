@@ -7,11 +7,13 @@ import retrofit2.Response
 import retrofit2.Retrofit
 import retrofit2.converter.gson.GsonConverterFactory
 import retrofit2.http.GET
+import retrofit2.http.Query
 
 
 interface ApiInterface {
-    @GET("/subjects")
-    suspend fun getDashboardData():Response<DashboardData>
+    @GET("/dashboard")
+    suspend fun getDashboardData(@Query("semester") semester:Int,@Query("Stream") Stream:String):Response<DashboardData>
+
 
 
 }

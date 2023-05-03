@@ -1,14 +1,15 @@
 <resources>
     <string name="app_name">Attendance_APP</string>
     <string-array name="semesters">
-        <item>1st CSE</item>
-        <item>2nd CSE</item>
-        <item>3rd CSE</item>
-        <item>4th CSE</item>
-        <item>5th CSE</item>
-        <item>6th CSE</item>
-        <item>7th CSE</item>
-        <item>8th CSE</item>
+        <item>All Semester</item>
+        <item>1st Semester</item>
+        <item>2nd Semester</item>
+        <item>3rd Semester</item>
+        <item>4th Semester</item>
+        <item>5th Semester</item>
+        <item>6th Semester</item>
+        <item>7th Semester</item>
+        <item>8th Semester</item>
     </string-array>
     <string-array name="years">
         <item>1st Year</item>
@@ -17,9 +18,10 @@
         <item>4th Year</item>
     </string-array>
     <string-array name="streams">
+        <item>All</item>
         <item>CSE</item>
         <item>Civil</item>
-        <item>Machanical</item>
+        <item>Mechanical</item>
         <item>Bio-Tech</item>
     </string-array>
     <string name="title_activity_main2">MainActivity2</string>
