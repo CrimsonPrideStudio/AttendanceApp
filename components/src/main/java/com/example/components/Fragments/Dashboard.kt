@@ -227,6 +227,7 @@ class Dashboard : Fragment(), AdapterView.OnItemSelectedListener {
     override fun onNothingSelected(parent: AdapterView<*>?) {
         Log.e("This", "Nothing Selected")
     }
+
     private fun getCurrentLocation(){
         val locationManager: LocationManager =
             context?.getSystemService(Context.LOCATION_SERVICE) as LocationManager

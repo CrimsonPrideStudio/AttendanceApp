@@ -1,60 +1,91 @@
 package com.example.components.Fragments
 
 import android.os.Bundle
-import androidx.fragment.app.Fragment
+import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.fragment.app.Fragment
+import androidx.navigation.fragment.findNavController
 import com.example.components.R
+import com.example.components.api.ApiService
+import com.example.components.databinding.FragmentLoginBinding
+import com.example.components.model.StudentDataResponse
+import com.example.components.utils.SharedPrefs
+import com.google.firebase.FirebaseApp
+import kotlinx.coroutines.CoroutineScope
+import kotlinx.coroutines.Dispatchers
+import kotlinx.coroutines.launch
+import retrofit2.Call
+import retrofit2.Callback
+import retrofit2.Response
 
-// TODO: Rename parameter arguments, choose names that match
-// the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
-private const val ARG_PARAM1 = "param1"
-private const val ARG_PARAM2 = "param2"
 
-/**
- * A simple [Fragment] subclass.
- * Use the [LoginFragment.newInstance] factory method to
- * create an instance of this fragment.
- */
 class LoginFragment : Fragment() {
-    // TODO: Rename and change types of parameters
-    private var param1: String? = null
-    private var param2: String? = null
 
-    override fun onCreate(savedInstanceState: Bundle?) {
-        super.onCreate(savedInstanceState)
-        arguments?.let {
-            param1 = it.getString(ARG_PARAM1)
-            param2 = it.getString(ARG_PARAM2)
-        }
-    }
+
+    //APi Variaables
+    lateinit var studentDetails: StudentDataResponse
+
+    lateinit var binding: FragmentLoginBinding
+
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
-    ): View? {
-        // Inflate the layout for this fragment
-        return inflater.inflate(R.layout.fragment_login, container, false)
+    ): View {
+        binding = FragmentLoginBinding.inflate(layoutInflater)
+        FirebaseApp.initializeApp(requireContext());
+
+        return binding.root
     }
 
-    companion object {
-        /**
-         * Use this factory method to create a new instance of
-         * this fragment using the provided parameters.
-         *
-         * @param param1 Parameter 1.
-         * @param param2 Parameter 2.
-         * @return A new instance of fragment LoginFragment.
-         */
-        // TODO: Rename and change types and number of parameters
-        @JvmStatic
-        fun newInstance(param1: String, param2: String) =
-            LoginFragment().apply {
-                arguments = Bundle().apply {
-                    putString(ARG_PARAM1, param1)
-                    putString(ARG_PARAM2, param2)
-                }
+    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
+        super.onViewCreated(view, savedInstanceState)
+
+
+        binding.send.setOnClickListener {
+            val studentId = binding.input.text.toString()
+            if (studentId.length == 12) {
+                getStudentDetails(studentId)
+                findNavController().navigate(R.id.action_loginFragment_to_otpVerification)
             }
+        }
+
+
     }
+
+    private fun getStudentDetails(student_id: String) {
+        val scope = CoroutineScope(Dispatchers.IO)
+        scope.launch {
+            try {
+                val call = ApiService.apiInterface.getStudentDetails(student_id)
+                call.enqueue(object : Callback<StudentDataResponse> {
+                    override fun onResponse(
+                        call: Call<StudentDataResponse>,
+                        response: Response<StudentDataResponse>
+                    ) {
+                        if (response.isSuccessful) {
+                            val studentDetails = response.body()!!
+                            Log.e("STudentData", studentDetails.toString())
+                            SharedPrefs(requireContext()).setStudentDetails(studentDetails)
+                            // Process the dashboardData object here
+                        } else {
+                            Log.e("DashboardData", response.toString())
+                            // Handle the error here
+                        }
+                    }
+
+                    override fun onFailure(call: Call<StudentDataResponse>, t: Throwable) {
+                        Log.e("DashboardData", t.toString())
+                        // Handle the exception here
+                    }
+                })
+            } catch (e: Exception) {
+                Log.e("DashboardData", e.toString())
+                // Handle the exception here
+            }
+        }
+    }
+
 }

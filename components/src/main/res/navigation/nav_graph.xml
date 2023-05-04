@@ -1,6 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <navigation xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/nav_graph"
     app:startDestination="@id/loginFragment">
     <fragment
@@ -10,17 +11,12 @@
         <action
             android:id="@+id/action_loginFragment_to_otpVerification"
             app:destination="@id/otpVerification" />
-        <action
-            android:id="@+id/action_loginFragment_to_dashboard"
-            app:destination="@id/dashboard" />
     </fragment>
     <fragment
         android:id="@+id/otpVerification"
         android:name="com.example.components.Fragments.OtpVerification"
-        android:label="OtpVerification" >
-        <action
-            android:id="@+id/action_otpVerification_to_loginFragment"
-            app:destination="@id/loginFragment" />
+        android:label="fragment_otp_verification"
+        tools:layout="@layout/fragment_otp_verification" >
         <action
             android:id="@+id/action_otpVerification_to_dashboard"
             app:destination="@id/dashboard" />
@@ -28,5 +24,6 @@
     <fragment
         android:id="@+id/dashboard"
         android:name="com.example.components.Fragments.Dashboard"
-        android:label="Dashboard" />
+        android:label="fragment_dashboard"
+        tools:layout="@layout/fragment_dashboard" />
 </navigation>

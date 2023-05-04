@@ -1,60 +1,153 @@
 package com.example.components.Fragments
 
 import android.os.Bundle
-import androidx.fragment.app.Fragment
+import android.text.Editable
+import android.text.TextWatcher
+import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.core.content.ContextCompat.getSystemService
+import androidx.fragment.app.Fragment
+import androidx.navigation.fragment.findNavController
 import com.example.components.R
+import com.example.components.databinding.FragmentOtpVerificationBinding
+import com.example.components.utils.FirebaseManager
+import com.example.components.utils.SharedPrefs
+import com.example.components.utils.SharedPrefs.Companion.KEY_PHONE_NUMBER
+import com.google.firebase.FirebaseException
+import com.google.firebase.auth.PhoneAuthCredential
+import com.google.firebase.auth.PhoneAuthOptions
+import com.google.firebase.auth.PhoneAuthProvider
+import java.util.concurrent.TimeUnit
+import android.app.Activity
+import android.content.Context
+import android.view.inputmethod.InputMethodManager
+import android.widget.Toast
+import com.example.components.utils.hideKeyboard
 
-// TODO: Rename parameter arguments, choose names that match
-// the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
-private const val ARG_PARAM1 = "param1"
-private const val ARG_PARAM2 = "param2"
 
-/**
- * A simple [Fragment] subclass.
- * Use the [OtpVerification.newInstance] factory method to
- * create an instance of this fragment.
- */
 class OtpVerification : Fragment() {
-    // TODO: Rename and change types of parameters
-    private var param1: String? = null
-    private var param2: String? = null
 
-    override fun onCreate(savedInstanceState: Bundle?) {
-        super.onCreate(savedInstanceState)
-        arguments?.let {
-            param1 = it.getString(ARG_PARAM1)
-            param2 = it.getString(ARG_PARAM2)
+
+    //Firebase Auth
+    lateinit var mCallback: PhoneAuthProvider.OnVerificationStateChangedCallbacks
+    lateinit var firebaseManager: FirebaseManager
+
+
+    lateinit var binding: FragmentOtpVerificationBinding
+
+    override fun onCreateView(
+        inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?
+    ): View {
+        binding = FragmentOtpVerificationBinding.inflate(layoutInflater)
+        firebaseManager = FirebaseManager()
+        firebaseManager.getAuth()?.firebaseAuthSettings?.setAppVerificationDisabledForTesting(true)
+        return binding.root
+    }
+
+    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
+        super.onViewCreated(view, savedInstanceState)
+        if (SharedPrefs(requireContext()).getStudentDataByOne(KEY_PHONE_NUMBER) != "") {
+            sendOTP()
+
+        }
+        setOtpTextWatchers();
+    }
+
+    private fun changeFragment(path: Int) {
+        findNavController().navigate(path)
+    }
+
+    private fun setOtpTextWatchers() {
+        binding.apply{
+        val otpFields = listOf(otp1, otp2, otp3, otp4, otp5, otp6)
+
+        for (i in otpFields.indices) {
+            otpFields[i].addTextChangedListener(object : TextWatcher {
+                override fun beforeTextChanged(s: CharSequence?, start: Int, count: Int, after: Int) {}
+
+                override fun onTextChanged(s: CharSequence?, start: Int, before: Int, count: Int) {}
+
+                override fun afterTextChanged(s: Editable?) {
+                    if (!s.isNullOrEmpty() && s.length == 1) {
+                        if (i < otpFields.lastIndex) {
+                            otpFields[i + 1].requestFocus()
+                        } else {
+                            otpFields.last().clearFocus()
+                          hideKeyboard()
+
+                        }
+                    } else if (s.isNullOrEmpty()) {
+                        if (i > 0) {
+                            otpFields[i - 1].requestFocus()
+                        }
+                    }
+                }
+            })
+        }
         }
     }
 
-    override fun onCreateView(
-        inflater: LayoutInflater, container: ViewGroup?,
-        savedInstanceState: Bundle?
-    ): View? {
-        // Inflate the layout for this fragment
-        return inflater.inflate(R.layout.fragment_otp_verification, container, false)
-    }
 
-    companion object {
-        /**
-         * Use this factory method to create a new instance of
-         * this fragment using the provided parameters.
-         *
-         * @param param1 Parameter 1.
-         * @param param2 Parameter 2.
-         * @return A new instance of fragment OtpVerification.
-         */
-        // TODO: Rename and change types and number of parameters
-        @JvmStatic
-        fun newInstance(param1: String, param2: String) =
-            OtpVerification().apply {
-                arguments = Bundle().apply {
-                    putString(ARG_PARAM1, param1)
-                    putString(ARG_PARAM2, param2)
+    private fun sendOTP() {
+        mCallback = object : PhoneAuthProvider.OnVerificationStateChangedCallbacks() {
+            override fun onVerificationCompleted(p0: PhoneAuthCredential) {
+                binding.apply {
+                    otp1.setText(p0.smsCode?.get(0).toString())
+                    otp2.setText(p0.smsCode?.get(1).toString())
+                    otp3.setText(p0.smsCode?.get(2).toString())
+                    otp4.setText(p0.smsCode?.get(3).toString())
+                    otp5.setText(p0.smsCode?.get(4).toString())
+                    otp6.setText(p0.smsCode?.get(5).toString())
+                    signInWithPhoneAuthCredential(p0)
                 }
             }
+
+            override fun onVerificationFailed(p0: FirebaseException) {
+                Toast.makeText(requireContext(),p0.toString(),Toast.LENGTH_SHORT).show()
+
+            }
+
+            override fun onCodeSent(p0: String, p1: PhoneAuthProvider.ForceResendingToken) {
+                super.onCodeSent(p0, p1)
+                binding.send.setOnClickListener {
+                    binding.apply {
+                        val code: String =
+                            otp1.text.toString() + otp2.text.toString() + otp3.text.toString() + otp4.text.toString() + otp5.text.toString() + otp6.text.toString()
+
+                        val credential: PhoneAuthCredential =
+                            PhoneAuthProvider.getCredential(p0, code)
+                        signInWithPhoneAuthCredential(credential)
+                    }
+                }
+            }
+        }
+        val options = SharedPrefs(requireContext()).getStudentDataByOne(KEY_PHONE_NUMBER)?.let {
+            firebaseManager.getAuth()?.let { it1 ->
+                PhoneAuthOptions.newBuilder(it1)
+                    .setPhoneNumber(it)       // Phone number to verify
+                    .setTimeout(60L, TimeUnit.SECONDS) // Timeout and unit
+                    .setActivity(requireActivity())                 // Activity (for callback binding)
+                    .setCallbacks(mCallback)          // OnVerificationStateChangedCallbacks
+                    .build()
+            }
+        }
+        options?.let { PhoneAuthProvider.verifyPhoneNumber(it) }
     }
+
+    private fun signInWithPhoneAuthCredential(credential: PhoneAuthCredential) {
+
+        firebaseManager.getAuth()?.signInWithCredential(credential)?.addOnCompleteListener {
+            if (it.isSuccessful) {
+                changeFragment(R.id.action_otpVerification_to_dashboard)
+            } else {
+                Log.e("FIREBASE_ERROR", it.result.toString())
+                Toast.makeText(requireContext(),it.result.toString(),Toast.LENGTH_SHORT).show()
+            }
+        }
+
+
+    }
+
 }

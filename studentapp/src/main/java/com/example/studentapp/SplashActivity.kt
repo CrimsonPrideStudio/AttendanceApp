@@ -19,6 +19,7 @@ class SplashActivity : AppCompatActivity() {
         val navHostFragment = supportFragmentManager.findFragmentById(R.id.fragment) as NavHostFragment
         navController = navHostFragment.navController
         FirebaseMessaging.getInstance().subscribeToTopic(TOPIC)
+
         FirebaseMessaging.getInstance().token.addOnCompleteListener {
             if (it.isSuccessful) {
                 Log.d("TOKEN", it.result)

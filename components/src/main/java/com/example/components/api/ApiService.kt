@@ -4,6 +4,7 @@ package com.example.components.api
 import com.example.components.model.AddSubjectDataModel
 import com.example.components.model.AddSubjectResponseModel
 import com.example.components.model.DashboardData
+import com.example.components.model.StudentDataResponse
 import com.example.components.utils.Constants
 import retrofit2.Call
 import retrofit2.Response
@@ -21,6 +22,9 @@ interface ApiInterface {
 
     @POST("/addsubjects")
     fun addSubjectData(@Body addSubjectDataModel: AddSubjectDataModel): Call<AddSubjectResponseModel>
+
+    @GET("/student")
+     fun getStudentDetails(@Query("student_id") student_id:String):Call<StudentDataResponse>
 
 }
 object ApiService{

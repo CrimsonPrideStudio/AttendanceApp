@@ -51,30 +51,43 @@
             android:layout_height="wrap_content"
             android:layout_marginBottom="@dimen/margin_24dp"
             android:gravity="center"
-            android:textColor="@color/lightgray"
             android:text="We will send you one time password(OTP)"
+            android:textColor="@color/lightgray"
             android:textSize="@dimen/text_size_18sp" />
 
-        <EditText
+        <androidx.appcompat.widget.AppCompatEditText
+            android:textCursorDrawable="@drawable/custom_cursor_color"
+            android:inputType="phone"
+            android:backgroundTint="#f36356"
             android:id="@+id/input"
             android:layout_width="match_parent"
             android:layout_height="80dp"
             android:layout_marginBottom="@dimen/margin_32dp"
+
             android:gravity="center"
-            android:hint="Enter Mobile Number"
-            android:inputType="number"
+            android:hint="@string/enter_mobile_number"
+
             android:paddingBottom="@dimen/padding_8dp"
+
             android:textColor="@color/black"
             android:textColorHint="@color/lightgray"
+
             android:textSize="18sp" />
 
-        <Button
+        <androidx.appcompat.widget.AppCompatButton
             android:id="@+id/send"
             android:layout_width="match_parent"
-            android:layout_height="70dp"
-            android:backgroundTint="@color/black"
-            android:text="Send"
-            android:textColor="@color/white" />
+            android:layout_height="50dp"
+            android:background="@drawable/corner_rounded"
+            android:backgroundTint="#F36356"
+            android:gravity="center"
+            android:paddingHorizontal="10dp"
+            android:paddingVertical="10dp"
+            android:text="SEND"
+            android:textAlignment="center"
+            android:textColor="@color/white"
+            android:textSize="20sp" />
+
     </LinearLayout>
 
 </LinearLayout>

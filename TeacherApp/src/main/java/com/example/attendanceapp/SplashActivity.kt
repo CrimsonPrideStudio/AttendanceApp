@@ -38,10 +38,11 @@ class SplashActivity : AppCompatActivity() {
         }
 
         PushNotificationModel(NotificationDataModel("HIIII", "HHEHEH"), TOPIC).also {
-            sendNotification(it)
+           // sendNotification(it)
         }
 
     }
+
 
     private fun sendNotification(notification: PushNotificationModel) =
         CoroutineScope(Dispatchers.IO).launch {
