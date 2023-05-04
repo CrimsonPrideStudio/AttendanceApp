@@ -2,6 +2,8 @@ package com.example.components.Fragments
 
 import android.annotation.SuppressLint
 import android.app.AlertDialog
+import android.content.Context
+import android.location.LocationManager
 import android.os.Bundle
 import android.util.Log
 import android.view.LayoutInflater
@@ -19,6 +21,7 @@ import com.example.components.databinding.FragmentDashboardBinding
 import com.example.components.model.AddSubjectDataModel
 import com.example.components.model.AddSubjectResponseModel
 import com.example.components.model.DashboardData
+import com.example.components.utils.PermissionUtil
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
@@ -223,6 +226,13 @@ class Dashboard : Fragment(), AdapterView.OnItemSelectedListener {
 
     override fun onNothingSelected(parent: AdapterView<*>?) {
         Log.e("This", "Nothing Selected")
+    }
+    private fun getCurrentLocation(){
+        val locationManager: LocationManager =
+            context?.getSystemService(Context.LOCATION_SERVICE) as LocationManager
+        if(PermissionUtil.requestLocationPermission(requireActivity())){
+
+        }
     }
 
 }
