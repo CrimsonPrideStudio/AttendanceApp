@@ -1,0 +1,104 @@
+<?xml version="1.0" encoding="utf-8"?>
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".Fragments.OtpVerification" android:gravity="center_horizontal"
+    android:orientation="vertical"
+    android:paddingLeft="@dimen/padding_64dp"
+    android:paddingTop="@dimen/padding_32dp"
+    android:paddingRight="@dimen/padding_64dp">
+
+    <TextView
+        android:id="@+id/title"
+
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:fontFamily="@font/raleway_bold"
+        android:gravity="center"
+        android:text="Log In Account"
+        android:textSize="@dimen/text_size_20sp" />
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:gravity="center"
+        android:orientation="vertical">
+
+        <ImageView
+            android:id="@+id/image"
+            android:layout_width="wrap_content"
+            android:layout_height="200dp"
+            android:layout_marginStart="@dimen/margin_32dp"
+            android:layout_marginBottom="@dimen/margin_32dp"
+            android:adjustViewBounds="true"
+            android:src="@drawable/login_placeholder" />
+
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/margin_20dp"
+            android:layout_marginBottom="@dimen/margin_24dp"
+            android:fontFamily="@font/raleway_semibold"
+            android:gravity="center"
+            android:text="Enter your mobile number to login"
+            android:textColor="@color/black"
+            android:textSize="@dimen/text_size_20sp"
+            android:textStyle="bold" />
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="@dimen/margin_24dp"
+            android:gravity="center"
+            android:textColor="@color/lightgray"
+            android:text="We will send you one time password(OTP)"
+            android:textSize="@dimen/text_size_18sp" />
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:gravity="center">
+            <EditText
+                android:id="@+id/otp1"
+                android:layout_width="@dimen/dimen_otp"
+                android:layout_height="@dimen/dimen_otp"/>
+            <EditText
+                android:id="@+id/otp2"
+
+                android:layout_width="@dimen/dimen_otp"
+                android:layout_height="@dimen/dimen_otp"/>
+            <EditText
+                android:id="@+id/otp3"
+
+                android:layout_width="@dimen/dimen_otp"
+                android:layout_height="@dimen/dimen_otp"/>
+            <EditText
+                android:id="@+id/otp4"
+
+                android:layout_width="@dimen/dimen_otp"
+                android:layout_height="@dimen/dimen_otp"/>
+            <EditText
+                android:id="@+id/otp5"
+
+                android:layout_width="@dimen/dimen_otp"
+                android:layout_height="@dimen/dimen_otp"/>
+            <EditText
+                android:id="@+id/otp6"
+
+                android:layout_width="@dimen/dimen_otp"
+                android:layout_height="@dimen/dimen_otp"/>
+        </LinearLayout>
+
+        <Button
+            android:id="@+id/send"
+            android:layout_width="match_parent"
+            android:layout_height="70dp"
+            android:backgroundTint="@color/black"
+            android:text="Send"
+            android:textColor="@color/white" />
+    </LinearLayout>
+
+</FrameLayout>

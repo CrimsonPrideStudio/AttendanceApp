@@ -2,10 +2,9 @@
 <navigation xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:id="@+id/nav_graph"
-    app:startDestination="@id/dashboard">
-
+    app:startDestination="@id/loginFragment">
     <fragment
-        android:id="@+id/dashboard"
-        android:name="com.example.components.Fragments.Dashboard"
-        android:label="Dashboard" />
+        android:id="@+id/loginFragment"
+        android:name="com.example.components.Fragments.LoginFragment"
+        android:label="LoginFragment" />
 </navigation>
