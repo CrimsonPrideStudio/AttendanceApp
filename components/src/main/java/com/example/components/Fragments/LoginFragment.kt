@@ -1,6 +1,8 @@
 package com.example.components.Fragments
 
+import android.annotation.SuppressLint
 import android.os.Bundle
+import android.provider.Settings.Secure
 import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
@@ -30,13 +32,16 @@ class LoginFragment : Fragment() {
     lateinit var binding: FragmentLoginBinding
 
 
+    @SuppressLint("HardwareIds")
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View {
         binding = FragmentLoginBinding.inflate(layoutInflater)
         FirebaseApp.initializeApp(requireContext());
+        val androidId = Secure.getString(requireContext().contentResolver,Secure.ANDROID_ID)
 
+        Log.d("Android", "Android ID : $androidId")
         return binding.root
     }
 

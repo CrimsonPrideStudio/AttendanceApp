@@ -6,6 +6,7 @@
     android:layout_height="match_parent"
     android:padding="30dp"
     android:transitionName="transition_signup"
+    tools:context=".Fragments.SignUp3Fragment"
     >
 
     <LinearLayout
@@ -82,6 +83,7 @@
 
 
                 <com.google.android.material.textfield.TextInputEditText
+                    android:id="@+id/etRollNumber"
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
                     android:inputType="text"
@@ -93,7 +95,7 @@
 
 
             <com.google.android.material.textfield.TextInputLayout
-                android:id="@id/Email"
+
                 app:startIconDrawable="@drawable/email_icon"
                 app:endIconTint="#f34356"
                 app:startIconTint="#f34356"
@@ -110,6 +112,7 @@
 
 
                 <com.google.android.material.textfield.TextInputEditText
+                    android:id="@+id/etEnrollNumber"
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
                     android:inputType="text"
@@ -154,6 +157,7 @@
             android:layout_marginTop="30dp"
             android:backgroundTint="#f36356"
             android:elevation="5dp"
+            android:padding="@dimen/padding_12dp"
             android:text="Next"
             android:textColor="@color/white"
             android:transitionName="transition_next_btn" />

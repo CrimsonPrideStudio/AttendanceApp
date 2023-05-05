@@ -3,18 +3,46 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/nav_graph"
-    app:startDestination="@id/signIn">
+    app:startDestination="@id/signUpFragment">
+
     <fragment
-        android:id="@+id/signIn"
-        android:name="com.example.studentapp.Fragments.SignIn"
-        android:label="fragment_sign_in"
-        tools:layout="@layout/fragment_sign_up1" >
+        android:id="@+id/signUpFragment"
+        android:name="com.example.studentapp.Fragments.SignUp1Fragment"
+        android:label="fragment_sign_up"
+        tools:layout="@layout/fragment_sign_up_1" >
         <action
-            android:id="@+id/action_signIn_to_dashboard2"
-            app:destination="@id/dashboard2" />
+            android:id="@+id/action_signUpFragment_to_signUp2Fragment"
+            app:destination="@id/signUp2Fragment" />
     </fragment>
     <fragment
-        android:id="@+id/dashboard2"
-        android:name="com.example.components.Fragments.Dashboard"
-        android:label="Dashboard" />
+        android:id="@+id/signUp2Fragment"
+        android:name="com.example.studentapp.Fragments.SignUp2Fragment"
+        android:label="fragment_sign_up_2"
+        tools:layout="@layout/fragment_sign_up_2" >
+        <action
+            android:id="@+id/action_signUp2Fragment_to_signUp3Fragment"
+            app:destination="@id/signUp3Fragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/signUp3Fragment"
+        android:name="com.example.studentapp.Fragments.SignUp3Fragment"
+        android:label="fragment_sign_up_3"
+        tools:layout="@layout/fragment_sign_up_3" >
+        <action
+            android:id="@+id/action_signUp3Fragment_to_signUp4Fragment"
+            app:destination="@id/signUp4Fragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/signUp4Fragment"
+        android:name="com.example.studentapp.Fragments.SignUp4Fragment"
+        android:label="fragment_sign_up_4"
+        tools:layout="@layout/fragment_sign_up_4" >
+        <action
+            android:id="@+id/action_signUp4Fragment_to_loginFragment2"
+            app:destination="@id/loginFragment2" />
+    </fragment>
+    <fragment
+        android:id="@+id/loginFragment2"
+        android:name="com.example.components.Fragments.LoginFragment"
+        android:label="LoginFragment" />
 </navigation>

@@ -1,17 +1,17 @@
 <?xml version="1.0" encoding="utf-8"?>
 <ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
-    xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:padding="30dp"
+    xmlns:tools="http://schemas.android.com/tools"
     android:transitionName="transition_signup"
-   >
+    tools:context=".Fragments.SignUp1Fragment">
 
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:orientation="vertical">
+        android:orientation="vertical"
+        android:padding="30dp">
 
 
         <ImageView
@@ -42,14 +42,14 @@
                 android:layout_width="100dp"
                 android:layout_height="100dp"
                 android:layout_alignParentRight="true"
-                android:background="@drawable/hollow_circle"
                 android:layout_centerVertical="true"
                 android:layout_marginTop="20dp"
+                android:background="@drawable/hollow_circle"
                 android:gravity="center"
                 android:padding="10dp"
                 android:text="1/4"
                 android:textAlignment="center"
-                android:textColor="@color/lightgray"
+                android:textColor="@color/black"
                 android:textSize="30sp"
                 android:transitionName="transition_slide_text" />
 
@@ -66,22 +66,54 @@
 
             <com.google.android.material.textfield.TextInputLayout
                 android:id="@+id/fullName"
+
                 style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/margin_2dp"
+                android:drawablePadding="@dimen/padding_8dp"
+                android:hint="@string/first_name"
                 android:textColorHint="@color/black"
                 app:boxStrokeColor="@color/black"
-                android:hint="Full Name"
-               app:startIconDrawable="@drawable/ic_baseline_person_24"
-                android:drawablePadding="@dimen/padding_8dp"
                 app:boxStrokeWidthFocused="2dp"
                 app:endIconMode="clear_text"
-                app:endIconTint="#f26356"
+                app:endIconTint="#F36356"
                 app:hintTextColor="@color/black"
+                app:startIconDrawable="@drawable/ic_baseline_person_24"
+                app:startIconTint="#F36356">
+
+
+                <com.google.android.material.textfield.TextInputEditText
+                    android:id="@+id/etFirstName"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:inputType="text"
+                    android:textColor="@color/black"
+                    android:textCursorDrawable="@null" />
+
+
+            </com.google.android.material.textfield.TextInputLayout>
+
+            <com.google.android.material.textfield.TextInputLayout
+                android:id="@+id/lastNameEt"
+                style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/margin_2dp"
+                android:drawablePadding="@dimen/padding_8dp"
+                android:hint="@string/last_name"
+                android:textColorHint="@color/black"
+                app:boxStrokeColor="@color/black"
+                app:boxStrokeWidthFocused="2dp"
+                app:endIconMode="clear_text"
+                app:endIconTint="#F36356"
+                app:hintTextColor="@color/black"
+                app:startIconDrawable="@drawable/ic_baseline_person_24"
                 app:startIconTint="#f36356">
 
 
                 <com.google.android.material.textfield.TextInputEditText
+                    android:id="@+id/etSecondName"
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
                     android:inputType="text"
@@ -91,25 +123,24 @@
 
             </com.google.android.material.textfield.TextInputLayout>
 
-
             <com.google.android.material.textfield.TextInputLayout
-                android:id="@id/Email"
-                app:startIconDrawable="@drawable/email_icon"
-                app:endIconTint="#f34356"
-                app:startIconTint="#f34356"
-                android:hint="Email"
                 style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/margin_2dp"
+                android:hint="Email"
                 android:textColorHint="@color/black"
                 app:boxStrokeColor="@color/black"
                 app:boxStrokeWidthFocused="2dp"
                 app:endIconMode="clear_text"
+                app:endIconTint="#F36356"
                 app:hintTextColor="@color/black"
-                >
+                app:startIconDrawable="@drawable/email_icon"
+                app:startIconTint="#F36356">
 
 
                 <com.google.android.material.textfield.TextInputEditText
+                    android:id="@+id/etEmail"
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
                     android:inputType="text"
@@ -121,26 +152,26 @@
 
 
             <com.google.android.material.textfield.TextInputLayout
-               style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
+                style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-               android:textColorHint="@color/black"
+                android:layout_marginTop="@dimen/margin_2dp"
+                android:hint="Phone Number"
+                android:textColorHint="@color/black"
                 app:boxStrokeColor="@color/black"
                 app:boxStrokeWidthFocused="2dp"
                 app:endIconMode="clear_text"
-                android:id="@id/Email"
-                app:startIconDrawable="@drawable/phone"
-                app:endIconTint="#f34356"
-                app:startIconTint="#f34356"
-                android:hint="Phone Number"
+                app:endIconTint="#F36356"
                 app:hintTextColor="@color/black"
-                >
+                app:startIconDrawable="@drawable/phone"
+                app:startIconTint="#F36356">
 
 
                 <com.google.android.material.textfield.TextInputEditText
+                    android:id="@+id/etMobileNumber"
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
-                    android:inputType="textEmailAddress"
+                    android:inputType="number"
                     android:textColor="@color/black"
                     android:textCursorDrawable="@null" />
 
@@ -151,15 +182,18 @@
         </LinearLayout>
 
 
-        <Button
-            android:id="@+id/next1"
+        <androidx.appcompat.widget.AppCompatButton
+            android:id="@+id/signup_next_button"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="30dp"
-            android:backgroundTint="#f36356"
+            android:layout_height="60dp"
+            android:layout_marginTop="50dp"
+            android:background="@color/black"
+            android:backgroundTint="#000"
+
             android:elevation="5dp"
-            android:text="Next"
+            android:text="@string/next"
             android:textColor="@color/white"
+            android:textSize="@dimen/text_size_18sp"
             android:transitionName="transition_next_btn" />
 
 
@@ -168,8 +202,8 @@
             android:layout_height="wrap_content"
             android:layout_marginTop="20dp"
             android:background="#00000000"
-            android:padding="@dimen/padding_6dp"
             android:elevation="5dp"
+            android:padding="@dimen/padding_6dp"
             android:text="Login"
             android:textColor="@color/black"
             android:transitionName="transition_login_btn" />

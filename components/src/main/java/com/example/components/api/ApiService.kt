@@ -1,10 +1,7 @@
 package com.example.components.api
 
 
-import com.example.components.model.AddSubjectDataModel
-import com.example.components.model.AddSubjectResponseModel
-import com.example.components.model.DashboardData
-import com.example.components.model.StudentDataResponse
+import com.example.components.model.*
 import com.example.components.utils.Constants
 import retrofit2.Call
 import retrofit2.Response
@@ -18,19 +15,28 @@ import retrofit2.http.Query
 
 interface ApiInterface {
     @GET("/dashboard")
-    suspend fun getDashboardData(@Query("semester") semester:Int,@Query("Stream") Stream:String):Response<DashboardData>
+    suspend fun getDashboardData(
+        @Query("semester") semester: Int,
+        @Query("Stream") Stream: String
+    ): Response<DashboardData>
 
     @POST("/addsubjects")
     fun addSubjectData(@Body addSubjectDataModel: AddSubjectDataModel): Call<AddSubjectResponseModel>
 
     @GET("/student")
-     fun getStudentDetails(@Query("student_id") student_id:String):Call<StudentDataResponse>
+    fun getStudentDetails(@Query("student_id") student_id: String): Call<StudentDataResponse>
+
+    @POST("/signup")
+    fun signupStudent(@Body studentDataPostModel: StudentDataPostModel): Call<StudentSignupResponse>
 
 }
-object ApiService{
-     var apiInterface: ApiInterface
-    init{
-        val retrofit = Retrofit.Builder().baseUrl(Constants.BASE_URL).addConverterFactory((GsonConverterFactory.create()))
+
+object ApiService {
+    var apiInterface: ApiInterface
+
+    init {
+        val retrofit = Retrofit.Builder().baseUrl(Constants.BASE_URL)
+            .addConverterFactory((GsonConverterFactory.create()))
             .build()
 
         apiInterface = retrofit.create(ApiInterface::class.java)
