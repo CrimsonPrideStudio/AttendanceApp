@@ -1,0 +1,177 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:padding="30dp"
+    android:transitionName="transition_signup"
+    >
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical">
+
+
+        <ImageView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:padding="5dp"
+            android:transitionName="transition_back_arrow_btn" />
+
+
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="50dp">
+
+
+            <TextView
+                android:layout_width="250dp"
+                android:layout_height="match_parent"
+                android:layout_centerVertical="true"
+                android:text="Create Account"
+                android:textAllCaps="true"
+                android:textColor="#f36356"
+                android:textSize="40sp"
+                android:transitionName="transition_title_text" />
+
+
+            <TextView
+                android:layout_width="100dp"
+                android:layout_height="100dp"
+                android:layout_alignParentRight="true"
+                android:background="@drawable/hollow_circle"
+                android:layout_centerVertical="true"
+                android:layout_marginTop="20dp"
+                android:gravity="center"
+                android:padding="10dp"
+                android:text="3/4"
+                android:textAlignment="center"
+                android:textColor="@color/lightgray"
+                android:textSize="30sp"
+                android:transitionName="transition_slide_text" />
+
+
+        </RelativeLayout>
+
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="60dp"
+            android:orientation="vertical">
+
+
+            <com.google.android.material.textfield.TextInputLayout
+                android:id="@+id/fullName"
+                style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:textColorHint="@color/black"
+                app:boxStrokeColor="@color/black"
+                android:hint="Roll Number"
+                app:startIconDrawable="@drawable/ic_baseline_person_24"
+                android:drawablePadding="@dimen/padding_8dp"
+                app:boxStrokeWidthFocused="2dp"
+                app:endIconMode="clear_text"
+                app:endIconTint="#f26356"
+                app:hintTextColor="@color/black"
+                app:startIconTint="#f36356">
+
+
+                <com.google.android.material.textfield.TextInputEditText
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:inputType="text"
+                    android:textColor="@color/black"
+                    android:textCursorDrawable="@null" />
+
+
+            </com.google.android.material.textfield.TextInputLayout>
+
+
+            <com.google.android.material.textfield.TextInputLayout
+                android:id="@id/Email"
+                app:startIconDrawable="@drawable/email_icon"
+                app:endIconTint="#f34356"
+                app:startIconTint="#f34356"
+                android:hint="Enrollment Number"
+                style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:textColorHint="@color/black"
+                app:boxStrokeColor="@color/black"
+                app:boxStrokeWidthFocused="2dp"
+                app:endIconMode="clear_text"
+                app:hintTextColor="@color/black"
+                >
+
+
+                <com.google.android.material.textfield.TextInputEditText
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:inputType="text"
+                    android:textColor="@color/black"
+                    android:textCursorDrawable="@null" />
+
+
+            </com.google.android.material.textfield.TextInputLayout>
+
+            <Spinner
+                android:id="@+id/semester"
+                android:layout_width="match_parent"
+                android:autofillHints="Semester"
+                android:layout_height="60dp"
+                android:layout_alignParentEnd="true"
+                android:backgroundTint="#f36356"
+                android:layout_marginTop="@dimen/margin_2dp"
+                android:layout_marginBottom="@dimen/margin_2dp"
+                android:dropDownWidth="wrap_content"
+                android:gravity="center" />
+
+
+            <Spinner
+                android:id="@+id/stream"
+                android:layout_width="match_parent"
+                android:autofillHints="Stream"
+                android:layout_height="60dp"
+                android:layout_alignParentEnd="true"
+                android:layout_marginTop="@dimen/margin_2dp"
+                android:layout_marginBottom="@dimen/margin_2dp"
+                android:backgroundTint="#f36356"
+                android:dropDownWidth="wrap_content"
+                android:gravity="center" />
+
+        </LinearLayout>
+
+
+        <androidx.appcompat.widget.AppCompatButton
+            android:id="@+id/next3"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="30dp"
+            android:backgroundTint="#f36356"
+            android:elevation="5dp"
+            android:text="Next"
+            android:textColor="@color/white"
+            android:transitionName="transition_next_btn" />
+
+
+        <androidx.appcompat.widget.AppCompatButton
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="20dp"
+            android:background="#00000000"
+            android:padding="@dimen/padding_6dp"
+            android:elevation="5dp"
+            android:text="Login"
+            android:textColor="@color/black"
+            android:transitionName="transition_login_btn" />
+
+
+    </LinearLayout>
+
+
+</ScrollView>

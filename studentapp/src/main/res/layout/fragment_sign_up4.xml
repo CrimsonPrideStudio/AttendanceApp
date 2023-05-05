@@ -1,0 +1,179 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:padding="30dp"
+    android:transitionName="transition_signup"
+    >
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical">
+
+
+        <ImageView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:padding="5dp"
+            android:transitionName="transition_back_arrow_btn" />
+
+
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="50dp">
+
+
+            <TextView
+                android:layout_width="250dp"
+                android:layout_height="match_parent"
+                android:layout_centerVertical="true"
+                android:text="Create Account"
+                android:textAllCaps="true"
+                android:textColor="#f36356"
+                android:textSize="40sp"
+                android:transitionName="transition_title_text" />
+
+
+            <TextView
+                android:layout_width="100dp"
+                android:layout_height="100dp"
+                android:layout_alignParentRight="true"
+                android:background="@drawable/hollow_circle"
+                android:layout_centerVertical="true"
+                android:layout_marginTop="20dp"
+                android:gravity="center"
+                android:padding="10dp"
+                android:text="4/4"
+                android:textAlignment="center"
+                android:textColor="@color/lightgray"
+                android:textSize="30sp"
+                android:transitionName="transition_slide_text" />
+
+
+        </RelativeLayout>
+
+
+        <LinearLayout
+                android:layout_width="match_parent"
+                android:orientation="vertical"
+                android:paddingStart="@dimen/padding_16dp"
+                android:paddingEnd="@dimen/padding_16dp"
+                android:layout_height="wrap_content">
+
+            <ImageButton
+                android:layout_width="wrap_content"
+                android:layout_height="220dp"
+                android:scaleType="fitCenter"
+                android:backgroundTint="@color/white"
+                android:layout_marginBottom="@dimen/margin_32dp"
+                android:layout_marginTop="@dimen/margin_32dp"
+                android:src="@drawable/signup_icon" />
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="@dimen/margin_8dp"
+                android:gravity="center"
+                android:text="Enter Your Password"
+                android:textColor="@color/lightgray"
+                android:textSize="@dimen/text_size_18sp" />
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:gravity="center"
+                android:orientation="horizontal">
+
+                <androidx.appcompat.widget.AppCompatEditText
+                    android:id="@+id/otp1"
+                    android:layout_width="@dimen/dimen_otp"
+                    android:layout_height="@dimen/dimen_otp"
+                    android:backgroundTint="#f36356"
+                    android:gravity="center"
+                    android:inputType="phone"
+                    android:maxLength="1"
+                    android:textCursorDrawable="@drawable/custom_cursor_color" />
+
+                <androidx.appcompat.widget.AppCompatEditText
+                    android:id="@+id/otp2"
+                    android:layout_width="@dimen/dimen_otp"
+                    android:layout_height="@dimen/dimen_otp"
+                    android:backgroundTint="#f36356"
+                    android:gravity="center"
+                    android:inputType="phone"
+                    android:maxLength="1"
+                    android:textCursorDrawable="@drawable/custom_cursor_color" />
+
+                <androidx.appcompat.widget.AppCompatEditText
+                    android:id="@+id/otp3"
+                    android:layout_width="@dimen/dimen_otp"
+                    android:layout_height="@dimen/dimen_otp"
+                    android:backgroundTint="#f36356"
+                    android:gravity="center"
+                    android:inputType="phone"
+                    android:maxLength="1"
+                    android:textCursorDrawable="@drawable/custom_cursor_color" />
+
+                <androidx.appcompat.widget.AppCompatEditText
+                    android:id="@+id/otp4"
+                    android:layout_width="@dimen/dimen_otp"
+                    android:layout_height="@dimen/dimen_otp"
+                    android:backgroundTint="#f36356"
+                    android:gravity="center"
+                    android:inputType="phone"
+                    android:maxLength="1"
+                    android:textCursorDrawable="@drawable/custom_cursor_color" />
+
+                <androidx.appcompat.widget.AppCompatEditText
+                    android:id="@+id/otp5"
+                    android:layout_width="@dimen/dimen_otp"
+                    android:layout_height="@dimen/dimen_otp"
+                    android:backgroundTint="#f36356"
+                    android:gravity="center"
+                    android:inputType="phone"
+                    android:maxLength="1"
+                    android:textCursorDrawable="@drawable/custom_cursor_color" />
+
+                <androidx.appcompat.widget.AppCompatEditText
+                    android:id="@+id/otp6"
+                    android:layout_width="@dimen/dimen_otp"
+                    android:layout_height="@dimen/dimen_otp"
+                    android:backgroundTint="#f36356"
+                    android:gravity="center"
+                    android:inputType="phone"
+                    android:maxLength="1"
+                    android:textCursorDrawable="@drawable/custom_cursor_color" />
+            </LinearLayout>
+
+            <androidx.appcompat.widget.AppCompatButton
+                android:id="@+id/submit"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="30dp"
+                android:backgroundTint="#f36356"
+                android:elevation="5dp"
+                android:text="Submit"
+                android:textColor="@color/white"
+                android:transitionName="transition_next_btn" />
+
+
+            <androidx.appcompat.widget.AppCompatButton
+                android:id="@+id/signup_login_button"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="20dp"
+                android:background="#00000000"
+                android:elevation="5dp"
+                android:text="Login"
+                android:textColor="@color/black"
+                android:transitionName="transition_login_btn" />
+
+        </LinearLayout>
+
+        </LinearLayout>
+
+</ScrollView>
