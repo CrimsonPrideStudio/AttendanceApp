@@ -1,6 +1,8 @@
 package com.example.studentapp.Fragments
 
+import android.annotation.SuppressLint
 import android.os.Bundle
+import android.provider.Settings
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -14,10 +16,12 @@ import com.example.studentapp.databinding.FragmentSignUp1Binding
 class SignUp1Fragment : Fragment() {
 
 
-    lateinit var binding:FragmentSignUp1Binding
-    companion object{
+    lateinit var binding: FragmentSignUp1Binding
+
+    companion object {
         lateinit var studentDataPostModel: StudentDataPostModel
     }
+
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
@@ -30,19 +34,27 @@ class SignUp1Fragment : Fragment() {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-        binding.signupNextButton.setOnClickListener{
+        binding.signupNextButton.setOnClickListener {
             getStudentDetailsFromUser()
-
 
             findNavController().navigate(R.id.action_signUpFragment_to_signUp2Fragment)
         }
+        binding.login.setOnClickListener {
+           // findNavController().navigate(R.id.action_signUpFragment_to_loginFragment2)
+        }
     }
 
-    private  fun getStudentDetailsFromUser(){
+    @SuppressLint("HardwareIds")
+    private fun getStudentDetailsFromUser() {
         binding.apply {
-            studentDataPostModel.Name = etFirstName.text.toString() +" " + etSecondName.text.toString()
+            studentDataPostModel.Name =
+                etFirstName.text.toString() + " " + etSecondName.text.toString()
             studentDataPostModel.Email = etEmail.text.toString()
             studentDataPostModel.MobileNumber = etMobileNumber.text.toString()
+            studentDataPostModel.mobileId = Settings.Secure.getString(
+                requireContext().contentResolver,
+                Settings.Secure.ANDROID_ID
+            )
         }
     }
 

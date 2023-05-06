@@ -24,6 +24,7 @@ import android.app.Activity
 import android.content.Context
 import android.view.inputmethod.InputMethodManager
 import android.widget.Toast
+import com.example.components.Fragments.LoginFragment.Companion.studentDetails
 import com.example.components.utils.hideKeyboard
 
 
@@ -41,16 +42,15 @@ class OtpVerification : Fragment() {
         inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?
     ): View {
         binding = FragmentOtpVerificationBinding.inflate(layoutInflater)
-        firebaseManager = FirebaseManager()
-        firebaseManager.getAuth()?.firebaseAuthSettings?.setAppVerificationDisabledForTesting(true)
+       // firebaseManager = FirebaseManager()
+       // firebaseManager.getAuth()?.firebaseAuthSettings?.setAppVerificationDisabledForTesting(true)
         return binding.root
     }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-        if (SharedPrefs(requireContext()).getStudentDataByOne(KEY_PHONE_NUMBER) != "") {
-            sendOTP()
-
+        binding.send.setOnClickListener {
+            verifyPasscode()
         }
         setOtpTextWatchers();
     }
@@ -89,6 +89,26 @@ class OtpVerification : Fragment() {
         }
     }
 
+    private fun verifyPasscode(){
+
+
+
+               binding.apply {
+                   val code: String =
+                       otp1.text.toString() + otp2.text.toString() + otp3.text.toString() + otp4.text.toString() + otp5.text.toString() + otp6.text.toString()
+                   Toast.makeText(
+                       requireContext(),
+                       code + " : " + studentDetails.Passcode,
+                       Toast.LENGTH_SHORT
+                   ).show()
+                   if (studentDetails.Passcode == code) {
+                       findNavController().navigate(R.id.action_otpVerification_to_dashboard)
+                   }
+               }
+
+
+
+    }
 
     private fun sendOTP() {
         mCallback = object : PhoneAuthProvider.OnVerificationStateChangedCallbacks() {
@@ -140,7 +160,7 @@ class OtpVerification : Fragment() {
 
         firebaseManager.getAuth()?.signInWithCredential(credential)?.addOnCompleteListener {
             if (it.isSuccessful) {
-                changeFragment(R.id.action_otpVerification_to_dashboard)
+//                changeFragment(R.id.action_otpVerification_to_dashboard)
             } else {
                 Log.e("FIREBASE_ERROR", it.result.toString())
                 Toast.makeText(requireContext(),it.result.toString(),Toast.LENGTH_SHORT).show()

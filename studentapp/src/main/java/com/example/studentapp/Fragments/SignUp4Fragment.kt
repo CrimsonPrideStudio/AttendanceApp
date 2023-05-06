@@ -193,7 +193,7 @@ class SignUp4Fragment : Fragment() {
                             val studentDetails = response.body()!!
                             // Process the dashboardData object here
                             if(studentDetails.statusCode==200){
-                                findNavController().navigate(R.id.action_signUp4Fragment_to_loginFragment2)
+                               // findNavController().navigate(R.id.action_signUp4Fragment_to_loginFragment2)
                             }
                         } else {
                             Log.e("DashboardData1", response.toString())

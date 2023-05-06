@@ -13,6 +13,7 @@ import com.example.components.R
 import com.example.components.api.ApiService
 import com.example.components.databinding.FragmentLoginBinding
 import com.example.components.model.StudentDataResponse
+import com.example.components.model.StudentLoginPostModel
 import com.example.components.utils.SharedPrefs
 import com.google.firebase.FirebaseApp
 import kotlinx.coroutines.CoroutineScope
@@ -27,11 +28,16 @@ class LoginFragment : Fragment() {
 
 
     //APi Variaables
-    lateinit var studentDetails: StudentDataResponse
+
+
 
     lateinit var binding: FragmentLoginBinding
 
+    lateinit var androidId:String
 
+    companion object{
+        lateinit var studentDetails: StudentDataResponse
+    }
     @SuppressLint("HardwareIds")
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -39,7 +45,7 @@ class LoginFragment : Fragment() {
     ): View {
         binding = FragmentLoginBinding.inflate(layoutInflater)
         FirebaseApp.initializeApp(requireContext());
-        val androidId = Secure.getString(requireContext().contentResolver,Secure.ANDROID_ID)
+        androidId = Secure.getString(requireContext().contentResolver,Secure.ANDROID_ID)
 
         Log.d("Android", "Android ID : $androidId")
         return binding.root
@@ -51,29 +57,33 @@ class LoginFragment : Fragment() {
 
         binding.send.setOnClickListener {
             val studentId = binding.input.text.toString()
+
             if (studentId.length == 12) {
-                getStudentDetails(studentId)
-                findNavController().navigate(R.id.action_loginFragment_to_otpVerification)
+
+                val studentLoginPostModel = StudentLoginPostModel(androidId,studentId)
+                login(studentLoginPostModel)
+
             }
         }
 
 
     }
 
-    private fun getStudentDetails(student_id: String) {
+    private fun login(studentLoginPostModel:StudentLoginPostModel) {
         val scope = CoroutineScope(Dispatchers.IO)
         scope.launch {
             try {
-                val call = ApiService.apiInterface.getStudentDetails(student_id)
+                val call = ApiService.apiInterface.login(studentLoginPostModel)
                 call.enqueue(object : Callback<StudentDataResponse> {
                     override fun onResponse(
                         call: Call<StudentDataResponse>,
                         response: Response<StudentDataResponse>
                     ) {
                         if (response.isSuccessful) {
-                            val studentDetails = response.body()!!
+                            studentDetails = response.body()!!
                             Log.e("STudentData", studentDetails.toString())
                             SharedPrefs(requireContext()).setStudentDetails(studentDetails)
+                            findNavController().navigate(R.id.action_loginFragment_to_otpVerification)
                             // Process the dashboardData object here
                         } else {
                             Log.e("DashboardData", response.toString())

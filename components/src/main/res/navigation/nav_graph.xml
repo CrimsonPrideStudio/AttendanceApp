@@ -13,6 +13,11 @@
             app:destination="@id/otpVerification" />
     </fragment>
     <fragment
+        android:id="@+id/dashboard"
+        android:name="com.example.components.Fragments.Dashboard"
+        android:label="fragment_dashboard"
+        tools:layout="@layout/fragment_dashboard" />
+    <fragment
         android:id="@+id/otpVerification"
         android:name="com.example.components.Fragments.OtpVerification"
         android:label="fragment_otp_verification"
@@ -21,9 +26,4 @@
             android:id="@+id/action_otpVerification_to_dashboard"
             app:destination="@id/dashboard" />
     </fragment>
-    <fragment
-        android:id="@+id/dashboard"
-        android:name="com.example.components.Fragments.Dashboard"
-        android:label="fragment_dashboard"
-        tools:layout="@layout/fragment_dashboard" />
 </navigation>

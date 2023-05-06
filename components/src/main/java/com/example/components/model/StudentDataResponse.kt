@@ -10,5 +10,7 @@ data class StudentDataResponse(
     val Profile: String,
     val Stream: String,
     val semester: Int,
-    val student_id: String
+    val student_id: String,
+    val Passcode:String,
+    val status:Int,
 )
