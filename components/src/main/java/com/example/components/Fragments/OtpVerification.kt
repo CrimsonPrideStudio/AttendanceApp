@@ -90,9 +90,6 @@ class OtpVerification : Fragment() {
     }
 
     private fun verifyPasscode(){
-
-
-
                binding.apply {
                    val code: String =
                        otp1.text.toString() + otp2.text.toString() + otp3.text.toString() + otp4.text.toString() + otp5.text.toString() + otp6.text.toString()
@@ -102,7 +99,7 @@ class OtpVerification : Fragment() {
                        Toast.LENGTH_SHORT
                    ).show()
                    if (studentDetails.Passcode == code) {
-                       findNavController().navigate(R.id.action_otpVerification_to_dashboard)
+                       findNavController().navigate(R.id.action_otpVerification_to_userFragment)
                    }
                }
 

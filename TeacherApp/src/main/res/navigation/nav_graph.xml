@@ -2,31 +2,11 @@
 <navigation xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:id="@+id/nav_graph"
-    app:startDestination="@id/loginFragment">
+    app:startDestination="@id/userFragment">
+
+
     <fragment
-        android:id="@+id/loginFragment"
-        android:name="com.example.components.Fragments.LoginFragment"
-        android:label="LoginFragment" >
-        <action
-            android:id="@+id/action_loginFragment_to_otpVerification"
-            app:destination="@id/otpVerification" />
-        <action
-            android:id="@+id/action_loginFragment_to_dashboard"
-            app:destination="@id/dashboard" />
-    </fragment>
-    <fragment
-        android:id="@+id/otpVerification"
-        android:name="com.example.components.Fragments.OtpVerification"
-        android:label="OtpVerification" >
-        <action
-            android:id="@+id/action_otpVerification_to_loginFragment"
-            app:destination="@id/loginFragment" />
-        <action
-            android:id="@+id/action_otpVerification_to_dashboard"
-            app:destination="@id/dashboard" />
-    </fragment>
-    <fragment
-        android:id="@+id/dashboard"
-        android:name="com.example.components.Fragments.Dashboard"
-        android:label="Dashboard" />
+        android:id="@+id/userFragment"
+        android:name="com.example.components.Fragments.UserFragment"
+        android:label="UserFragment" />
 </navigation>

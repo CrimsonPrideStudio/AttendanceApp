@@ -31,20 +31,20 @@
 
     </LinearLayout>
 
-<!--    <com.google.android.material.floatingactionbutton.FloatingActionButton-->
-<!--        android:id="@+id/addAnnouncementFloatingActionButton"-->
-<!--        android:layout_width="wrap_content"-->
-<!--        android:layout_height="wrap_content"-->
-<!--        android:layout_alignParentEnd="true"-->
-<!--        android:layout_alignParentBottom="true"-->
-<!--        android:layout_marginStart="10dp"-->
-<!--        android:layout_marginTop="10dp"-->
-<!--        android:layout_marginEnd="10dp"-->
-<!--        android:layout_marginBottom="10dp"-->
-<!--        android:backgroundTint="@color/white"-->
-<!--        android:contentDescription="@string/floatingactiobbuttonfor_adding_class_and_data"-->
-<!--        android:src="@drawable/add"-->
-<!--        app:tint="@color/Radical_Red" />-->
+    <com.google.android.material.floatingactionbutton.FloatingActionButton
+        android:id="@+id/addAnnouncementFloatingActionBtn"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentEnd="true"
+        android:layout_alignParentBottom="true"
+        android:layout_marginStart="10dp"
+        android:layout_marginTop="10dp"
+        android:layout_marginEnd="10dp"
+        android:layout_marginBottom="10dp"
+        android:backgroundTint="@color/white"
+        android:contentDescription="@string/floatingactiobbuttonfor_adding_class_and_data"
+        android:src="@drawable/add"
+        app:tint="@color/Radical_Red" />
 
 
 </FrameLayout>

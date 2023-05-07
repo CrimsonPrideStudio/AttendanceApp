@@ -1,4 +1,4 @@
-package com.example.attendanceapp.Adapter
+package com.example.components.Adapter
 
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.FragmentActivity

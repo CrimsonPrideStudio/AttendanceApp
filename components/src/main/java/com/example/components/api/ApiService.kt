@@ -28,8 +28,12 @@ interface ApiInterface {
 
     @POST("/signup")
     fun signupStudent(@Body studentDataPostModel: StudentDataPostModel): Call<StudentSignupResponse>
+
     @POST("/login")
     fun login(@Body studentLoginPostModel:StudentLoginPostModel):Call<StudentDataResponse>
+
+    @POST("/announcement")
+    fun addAnnouncement(@Body announcementData: AnnouncementData):Call<AnnouncementResponse>
 
 }
 

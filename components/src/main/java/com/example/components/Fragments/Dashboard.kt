@@ -22,6 +22,7 @@ import com.example.components.model.AddSubjectDataModel
 import com.example.components.model.AddSubjectResponseModel
 import com.example.components.model.DashboardData
 import com.example.components.utils.PermissionUtil
+import com.google.firebase.messaging.FirebaseMessaging
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
@@ -62,10 +63,12 @@ class Dashboard : Fragment(), AdapterView.OnItemSelectedListener {
         binding = FragmentDashboardBinding.inflate(layoutInflater)
         bindingForm = AddClassDataformBinding.inflate(layoutInflater)
 
+        Log.e("this","Dashboard")
         initializeSpinners()
         initializeForm()
         addDashboardSpinnerFunctionality()
         hideFabButtonOnStudentApp()
+
 
         return binding.root
     }
@@ -139,6 +142,9 @@ class Dashboard : Fragment(), AdapterView.OnItemSelectedListener {
             binding.apply {
                 addClassFloatingButton.hide()
             }
+            val topic = "/topics/${semester}${stream}"
+            Log.e("MainActivty",topic)
+            FirebaseMessaging.getInstance().subscribeToTopic(topic)
         }
     }
 

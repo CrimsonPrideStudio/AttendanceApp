@@ -23,19 +23,26 @@ class FirebaseMsgService : FirebaseMessagingService() {
     override fun onMessageReceived(message: RemoteMessage) {
         super.onMessageReceived(message)
 
-        message.data["title"]?.let { Log.e("TOKENNN", it) }
-        pushNotification()
+        pushNotification(message.data["title"].toString(), message.data["message"].toString())
+
+        message.notification?.let {
+            // Get the notification message body
+            val notificationBody = it.body
+            val notificationTitle = it.title
+            // Display the notification message
+            pushNotification(notificationTitle.toString(), notificationBody.toString())
+        }
     }
 
     @RequiresApi(Build.VERSION_CODES.O)
-    private fun pushNotification() {
+    private fun pushNotification(title:String,msg:String) {
 
         val notificationManager: NotificationManager =
             getSystemService(NOTIFICATION_SERVICE) as NotificationManager
 
 
         val notification: Notification =
-            NotificationCompat.Builder(this,CHANNEL_ID).setSmallIcon(R.drawable.about_icon).setContentTitle("h").setContentText("h").setAutoCancel(true).build()
+            NotificationCompat.Builder(this,CHANNEL_ID).setSmallIcon(R.drawable.about_icon).setContentTitle(title).setContentText(msg).setAutoCancel(true).build()
 
         notificationManager.createNotificationChannel(
             NotificationChannel(
