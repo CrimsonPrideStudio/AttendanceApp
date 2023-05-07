@@ -5,8 +5,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:paddingTop="30px"
-    android:paddingBottom="10px"
-    android:background="@color/black">
+    android:paddingBottom="10px">
 
     <LinearLayout
         android:id="@+id/linearLayout2"
@@ -76,8 +75,7 @@
             android:layout_width="48dp"
             android:layout_height="48dp"
             android:layout_gravity="center"
-            android:background="@drawable/sort_icon"
-            android:backgroundTint="@color/white" />
+            android:background="@drawable/sort_icon" />
 
         <Space
             android:layout_width="0dp"

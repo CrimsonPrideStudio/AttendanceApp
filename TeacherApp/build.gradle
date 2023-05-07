@@ -53,4 +53,8 @@ dependencies {
     implementation "com.squareup.retrofit2:retrofit:$retrofit_version"
     implementation "com.squareup.retrofit2:converter-gson:$retrofit_version"
     implementation "com.squareup.okhttp3:okhttp:4.9.0"
+
+    //    Navigation
+    implementation 'com.github.chetankoli1.BottomNavigation:chetanbottomnavigation:0.0.3'
+    implementation 'androidx.viewpager2:viewpager2:1.0.0'
 }

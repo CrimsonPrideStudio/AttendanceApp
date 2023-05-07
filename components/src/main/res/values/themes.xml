@@ -1,23 +1,27 @@
 <resources xmlns:tools="http://schemas.android.com/tools">
     <!-- Base application theme. -->
-    <style name="Theme.Attendance_APP" parent="Theme.MaterialComponents.DayNight.NoActionBar">
+    <style name="customTheme" parent="Theme.MaterialComponents.DayNight.NoActionBar">
         <!-- Primary brand color. -->
-        <item name="colorPrimary">@color/Radical_Red</item>
-        <item name="colorPrimaryVariant">@color/Violent_Violet</item>
-        <item name="colorOnPrimary">@color/black</item>
+        <item name="colorPrimary">@color/colorLightPrimary</item>
+        <item name="colorPrimaryVariant">@color/white</item>
+        <item name="colorOnPrimary">@color/white</item>
         <!-- Secondary brand color. -->
-        <item name="colorSecondary">@color/Radical_Red</item>
+        <item name="colorSecondary">@color/colorLightSecondary</item>
         <item name="colorSecondaryVariant">@color/Indigo</item>
         <item name="colorOnSecondary">@color/white</item>
 
+        <item name="android:windowBackground">@color/lightBackground</item>
+
         <!-- Status bar color. -->
-        <item name="android:statusBarColor">@color/black</item>
+        <item name="android:statusBarColor">#00000000</item>
         <!-- Customize your theme here. -->
     </style>
-<style name="customAlert" parent="Theme.AppCompat.Light.Dialog.Alert">
-    <item name="android:windowBackground">@drawable/hollow_circle</item>
-</style>
-    <style name="Theme.Attendance_APP.NoActionBar">
+
+    <style name="customAlert" parent="Theme.AppCompat.Light.Dialog.Alert">
+        <item name="android:windowBackground">@drawable/hollow_circle</item>
+    </style>
+
+    <style name="customTheme.NoActionBar">
         <item name="windowActionBar">false</item>
         <item name="windowNoTitle">true</item>
     </style>

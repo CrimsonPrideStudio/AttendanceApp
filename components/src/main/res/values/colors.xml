@@ -15,4 +15,15 @@
     <color name="Indigo">#3F0071</color>
     <color name="Radical_Red">#FB2576</color>
 
+    <color name="colorLightPrimary">#FE1754</color><!-- Button, Imp Text   -->
+    <color name="colorOnLightPrimary">#fff</color><!-- Button Text Color   -->
+    <color name="colorLightSecondary">#FE1754</color><!-- Input Text, Text   -->
+    <color name="lightBackground">#fff</color><!-- Background In Light Mode   -->
+
+
+    <color name="colorDarkPrimary">#FE1754</color><!-- Button, Imp Text    -->
+    <color name="colorOnDarkPrimary">#fff</color><!-- Button Text Color    -->
+    <color name="colorDarkSecondary">#fff</color><!-- Input Text, Text  -->
+    <color name="darkBackground">#0c0f17</color><!--  Background In Dark Mode  -->
+
 </resources>

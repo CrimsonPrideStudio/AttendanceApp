@@ -1,9 +1,9 @@
 <?xml version="1.0" encoding="utf-8"?>
 <ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    xmlns:tools="http://schemas.android.com/tools"
     android:transitionName="transition_signup"
     tools:context=".Fragments.SignUp1Fragment">
 
@@ -33,7 +33,7 @@
                 android:layout_centerVertical="true"
                 android:text="Create Account"
                 android:textAllCaps="true"
-                android:textColor="#f36356"
+                   
                 android:textSize="40sp"
                 android:transitionName="transition_title_text" />
 
@@ -49,7 +49,7 @@
                 android:padding="10dp"
                 android:text="1/4"
                 android:textAlignment="center"
-                android:textColor="@color/black"
+
                 android:textSize="30sp"
                 android:transitionName="transition_slide_text" />
 
@@ -73,14 +73,14 @@
                 android:layout_marginTop="@dimen/margin_2dp"
                 android:drawablePadding="@dimen/padding_8dp"
                 android:hint="@string/first_name"
-                android:textColorHint="@color/black"
-                app:boxStrokeColor="@color/black"
+
+
                 app:boxStrokeWidthFocused="2dp"
                 app:endIconMode="clear_text"
-                app:endIconTint="#F36356"
-                app:hintTextColor="@color/black"
+
+
                 app:startIconDrawable="@drawable/ic_baseline_person_24"
-                app:startIconTint="#F36356">
+                   >
 
 
                 <com.google.android.material.textfield.TextInputEditText
@@ -88,7 +88,7 @@
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
                     android:inputType="text"
-                    android:textColor="@color/black"
+
                     android:textCursorDrawable="@null" />
 
 
@@ -102,14 +102,14 @@
                 android:layout_marginTop="@dimen/margin_2dp"
                 android:drawablePadding="@dimen/padding_8dp"
                 android:hint="@string/last_name"
-                android:textColorHint="@color/black"
-                app:boxStrokeColor="@color/black"
+
+
                 app:boxStrokeWidthFocused="2dp"
                 app:endIconMode="clear_text"
-                app:endIconTint="#F36356"
-                app:hintTextColor="@color/black"
+
+
                 app:startIconDrawable="@drawable/ic_baseline_person_24"
-                app:startIconTint="#f36356">
+                   >
 
 
                 <com.google.android.material.textfield.TextInputEditText
@@ -117,7 +117,7 @@
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
                     android:inputType="text"
-                    android:textColor="@color/black"
+
                     android:textCursorDrawable="@null" />
 
 
@@ -129,14 +129,14 @@
                 android:layout_height="wrap_content"
                 android:layout_marginTop="@dimen/margin_2dp"
                 android:hint="Email"
-                android:textColorHint="@color/black"
-                app:boxStrokeColor="@color/black"
+
+
                 app:boxStrokeWidthFocused="2dp"
                 app:endIconMode="clear_text"
-                app:endIconTint="#F36356"
-                app:hintTextColor="@color/black"
+
+
                 app:startIconDrawable="@drawable/email_icon"
-                app:startIconTint="#F36356">
+                   >
 
 
                 <com.google.android.material.textfield.TextInputEditText
@@ -144,7 +144,7 @@
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
                     android:inputType="text"
-                    android:textColor="@color/black"
+
                     android:textCursorDrawable="@null" />
 
 
@@ -157,14 +157,10 @@
                 android:layout_height="wrap_content"
                 android:layout_marginTop="@dimen/margin_2dp"
                 android:hint="Phone Number"
-                android:textColorHint="@color/black"
-                app:boxStrokeColor="@color/black"
                 app:boxStrokeWidthFocused="2dp"
                 app:endIconMode="clear_text"
-                app:endIconTint="#F36356"
-                app:hintTextColor="@color/black"
                 app:startIconDrawable="@drawable/phone"
-                app:startIconTint="#F36356">
+                   >
 
 
                 <com.google.android.material.textfield.TextInputEditText
@@ -172,7 +168,7 @@
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
                     android:inputType="number"
-                    android:textColor="@color/black"
+
                     android:textCursorDrawable="@null" />
 
 
@@ -187,12 +183,11 @@
             android:layout_width="match_parent"
             android:layout_height="60dp"
             android:layout_marginTop="50dp"
-            android:background="@color/black"
-            android:backgroundTint="#000"
+               
 
             android:elevation="5dp"
             android:text="@string/next"
-            android:textColor="@color/white"
+
             android:textSize="@dimen/text_size_18sp"
             android:transitionName="transition_next_btn" />
 
@@ -206,7 +201,6 @@
             android:elevation="5dp"
             android:padding="@dimen/padding_6dp"
             android:text="Login"
-            android:textColor="@color/black"
             android:transitionName="transition_login_btn" />
 
 

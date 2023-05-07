@@ -28,9 +28,8 @@
             android:id="@+id/image"
             android:layout_width="wrap_content"
             android:layout_height="200dp"
-            android:layout_marginStart="@dimen/margin_32dp"
-            android:layout_marginBottom="@dimen/margin_32dp"
             android:adjustViewBounds="true"
+            android:layout_marginBottom="@dimen/margin_32dp"
             android:src="@drawable/login_placeholder" />
 
 
@@ -41,51 +40,32 @@
             android:layout_marginBottom="@dimen/margin_24dp"
             android:fontFamily="@font/raleway_semibold"
             android:gravity="center"
-            android:text="Enter your mobile number to login"
-            android:textColor="@color/black"
+            android:text="Enter your Roll Number to login"
             android:textSize="@dimen/text_size_20sp"
             android:textStyle="bold" />
 
-        <TextView
+        <EditText
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginBottom="@dimen/margin_24dp"
-            android:gravity="center"
-            android:text="We will send you one time password(OTP)"
-            android:textColor="@color/lightgray"
-            android:textSize="@dimen/text_size_18sp" />
-
-        <androidx.appcompat.widget.AppCompatEditText
-            android:textCursorDrawable="@drawable/custom_cursor_color"
-            android:inputType="phone"
-            android:backgroundTint="#f36356"
             android:id="@+id/input"
-            android:layout_width="match_parent"
-            android:layout_height="80dp"
-            android:layout_marginBottom="@dimen/margin_32dp"
-
             android:gravity="center"
-            android:hint="@string/enter_mobile_number"
-
-            android:paddingBottom="@dimen/padding_8dp"
-
-            android:textColor="@color/black"
-            android:textColorHint="@color/lightgray"
-
-            android:textSize="18sp" />
+            android:hint="Roll Number"
+            android:layout_marginBottom="@dimen/margin_16dp"
+            android:padding="@dimen/padding_16dp"
+            />
 
         <androidx.appcompat.widget.AppCompatButton
             android:id="@+id/send"
             android:layout_width="match_parent"
             android:layout_height="50dp"
             android:background="@drawable/corner_rounded"
-            android:backgroundTint="#F36356"
             android:gravity="center"
+            android:textColor="?attr/colorOnPrimary"
+            android:backgroundTint="?attr/colorPrimary"
             android:paddingHorizontal="10dp"
             android:paddingVertical="10dp"
             android:text="SEND"
             android:textAlignment="center"
-            android:textColor="@color/white"
             android:textSize="20sp" />
 
     </LinearLayout>

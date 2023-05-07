@@ -13,7 +13,6 @@
 
 <RelativeLayout
     android:layout_width="match_parent"
-    android:background="@color/gray"
     android:layout_height="match_parent">
 
         <LinearLayout
@@ -45,7 +44,6 @@
                     android:layout_height="wrap_content"
                     android:layout_marginTop="5dp"
                     android:text="Khushbuu Mam"
-                    android:textColor="@color/white"
                     android:textAlignment="center"
                     android:textSize="11sp" />
 
@@ -80,7 +78,6 @@
                         android:id="@+id/presentStudent"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:textColor="@color/white"
                         android:text="61" />
 
                     <TextView
@@ -90,13 +87,11 @@
 
                         android:layout_alignLeft="@+id/present"
                         android:text="/"
-                        android:textColor="@color/white"
                         android:textSize="30sp" />
 
                     <TextView
                         android:id="@+id/totalStudents"
                         android:layout_width="wrap_content"
-                        android:textColor="@color/white"
                         android:layout_height="wrap_content"
                         android:layout_alignLeft="@+id/slash"
                         android:text="100" />
