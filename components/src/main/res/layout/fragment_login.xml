@@ -68,6 +68,21 @@
             android:textAlignment="center"
             android:textSize="20sp" />
 
+        <androidx.appcompat.widget.AppCompatButton
+            android:id="@+id/signup"
+            android:layout_width="match_parent"
+            android:layout_height="50dp"
+            android:background="@drawable/corner_rounded"
+            android:gravity="center"
+            android:textColor="?attr/colorOnPrimary"
+            android:backgroundTint="?attr/colorPrimary"
+            android:paddingHorizontal="10dp"
+            android:paddingVertical="10dp"
+            android:layout_marginTop="@dimen/margin_30dp"
+            android:text="signup"
+            android:textAlignment="center"
+            android:textSize="20sp" />
+
     </LinearLayout>
 
 </LinearLayout>

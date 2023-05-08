@@ -1,4 +1,4 @@
-package com.example.studentapp.Fragments
+package com.example.components.Fragments
 
 import android.os.Bundle
 import android.view.LayoutInflater
@@ -8,9 +8,9 @@ import android.widget.AdapterView
 import android.widget.ArrayAdapter
 import androidx.fragment.app.Fragment
 import androidx.navigation.fragment.findNavController
-import com.example.studentapp.Fragments.SignUp1Fragment.Companion.studentDataPostModel
-import com.example.studentapp.R
-import com.example.studentapp.databinding.FragmentSignUp3Binding
+import com.example.components.Fragments.SignUp1Fragment.Companion.studentDataPostModel
+import com.example.components.R
+import com.example.components.databinding.FragmentSignUp3Binding
 
 
 class SignUp3Fragment : Fragment(), AdapterView.OnItemSelectedListener {
@@ -26,8 +26,7 @@ class SignUp3Fragment : Fragment(), AdapterView.OnItemSelectedListener {
 
     lateinit var binding: FragmentSignUp3Binding
     override fun onCreateView(
-        inflater: LayoutInflater, container: ViewGroup?,
-        savedInstanceState: Bundle?
+        inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?
     ): View? {
         binding = FragmentSignUp3Binding.inflate(layoutInflater)
         initializeSpinners()

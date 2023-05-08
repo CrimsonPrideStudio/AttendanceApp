@@ -72,7 +72,7 @@
                 android:layout_height="wrap_content"
                 android:layout_marginTop="@dimen/margin_2dp"
                 android:drawablePadding="@dimen/padding_8dp"
-                android:hint="@string/first_name"
+                android:hint="First Name"
 
 
                 app:boxStrokeWidthFocused="2dp"

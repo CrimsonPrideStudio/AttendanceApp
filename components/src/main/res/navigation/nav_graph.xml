@@ -14,6 +14,9 @@
         <action
             android:id="@+id/action_loginFragment_to_userFragment"
             app:destination="@id/userFragment" />
+        <action
+            android:id="@+id/action_loginFragment_to_signUp1Fragment"
+            app:destination="@id/signUp1Fragment" />
     </fragment>
     <fragment
         android:id="@+id/otpVerification"
@@ -29,4 +32,36 @@
         android:name="com.example.components.Fragments.UserFragment"
         android:label="fragment_user"
          />
+    <fragment
+        android:id="@+id/signUp1Fragment"
+        android:name="com.example.components.Fragments.SignUp1Fragment"
+        android:label="fragment_sign_up_1"
+        tools:layout="@layout/fragment_sign_up_1" >
+        <action
+            android:id="@+id/action_signUp1Fragment_to_signUp2Fragment"
+            app:destination="@id/signUp2Fragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/signUp2Fragment"
+        android:name="com.example.components.Fragments.SignUp2Fragment"
+        android:label="fragment_sign_up_2"
+        tools:layout="@layout/fragment_sign_up_2" >
+        <action
+            android:id="@+id/action_signUp2Fragment_to_signUp3Fragment"
+            app:destination="@id/signUp3Fragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/signUp3Fragment"
+        android:name="com.example.components.Fragments.SignUp3Fragment"
+        android:label="fragment_sign_up_3"
+        tools:layout="@layout/fragment_sign_up_3" >
+        <action
+            android:id="@+id/action_signUp3Fragment_to_signUp4Fragment"
+            app:destination="@id/signUp4Fragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/signUp4Fragment"
+        android:name="com.example.components.Fragments.SignUp4Fragment"
+        android:label="fragment_sign_up_4"
+        tools:layout="@layout/fragment_sign_up_4" />
 </navigation>

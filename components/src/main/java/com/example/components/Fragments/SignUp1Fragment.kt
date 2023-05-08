@@ -1,4 +1,4 @@
-package com.example.studentapp.Fragments
+package com.example.components.Fragments
 
 import android.annotation.SuppressLint
 import android.os.Bundle
@@ -8,9 +8,10 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
 import androidx.navigation.fragment.findNavController
+import com.example.components.R
+import com.example.components.databinding.FragmentSignUp1Binding
 import com.example.components.model.StudentDataPostModel
-import com.example.studentapp.R
-import com.example.studentapp.databinding.FragmentSignUp1Binding
+
 
 
 class SignUp1Fragment : Fragment() {
@@ -37,7 +38,7 @@ class SignUp1Fragment : Fragment() {
         binding.signupNextButton.setOnClickListener {
             getStudentDetailsFromUser()
 
-            findNavController().navigate(R.id.action_signUpFragment_to_signUp2Fragment)
+            findNavController().navigate(R.id.action_loginFragment_to_signUp1Fragment)
         }
         binding.login.setOnClickListener {
            // findNavController().navigate(R.id.action_signUpFragment_to_loginFragment2)

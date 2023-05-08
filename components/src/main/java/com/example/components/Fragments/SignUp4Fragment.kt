@@ -1,4 +1,4 @@
-package com.example.studentapp.Fragments
+package com.example.components.Fragments
 
 import android.app.Activity
 import android.content.Intent
@@ -15,20 +15,14 @@ import android.view.ViewGroup
 import androidx.activity.result.ActivityResultLauncher
 import androidx.activity.result.contract.ActivityResultContracts
 import androidx.fragment.app.Fragment
-import androidx.navigation.fragment.findNavController
+import com.example.components.CropperActivity
+import com.example.components.Fragments.SignUp1Fragment.Companion.studentDataPostModel
 import com.example.components.api.ApiService
-import com.example.components.model.StudentDataResponse
+import com.example.components.databinding.FragmentSignUp4Binding
 import com.example.components.model.StudentSignupResponse
-import com.example.components.utils.SharedPrefs
 import com.example.components.utils.hideKeyboard
-import com.example.studentapp.CropperActivity
-import com.example.studentapp.Fragments.SignUp1Fragment.Companion.studentDataPostModel
-import com.example.studentapp.R
-import com.example.studentapp.SplashActivity
-import com.example.studentapp.databinding.FragmentSignUp4Binding
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.storage.FirebaseStorage
-import com.yalantis.ucrop.UCrop
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
@@ -39,7 +33,6 @@ import retrofit2.Response
 import java.io.ByteArrayOutputStream
 import java.io.File
 import java.io.FileOutputStream
-import java.util.*
 
 class SignUp4Fragment : Fragment() {
 
@@ -47,11 +40,13 @@ class SignUp4Fragment : Fragment() {
     private lateinit var binding: FragmentSignUp4Binding
 
     private lateinit var galleryLauncher: ActivityResultLauncher<Intent>
-    lateinit var firebaseStorage:FirebaseStorage
-    lateinit var destUri:String
-    companion object{
+    lateinit var firebaseStorage: FirebaseStorage
+    lateinit var destUri: String
+
+    companion object {
         lateinit var imageUri: Uri
     }
+
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
@@ -75,17 +70,18 @@ class SignUp4Fragment : Fragment() {
             }
 
 
-        galleryLauncher = registerForActivityResult(ActivityResultContracts.StartActivityForResult()) { result ->
-            if (result.resultCode == Activity.RESULT_OK) {
-                val data: Intent? = result.data
-                imageUri= data?.data!!
+        galleryLauncher =
+            registerForActivityResult(ActivityResultContracts.StartActivityForResult()) { result ->
+                if (result.resultCode == Activity.RESULT_OK) {
+                    val data: Intent? = result.data
+                    imageUri = data?.data!!
 
-                if (imageUri != null) {
-                    val intent = Intent(requireContext(),CropperActivity::class.java)
-                    startActivityForResult(intent,101)
+                    if (imageUri != null) {
+                        val intent = Intent(requireContext(), CropperActivity::class.java)
+                        startActivityForResult(intent, 101)
+                    }
                 }
             }
-        }
         return binding.root
     }
 
@@ -100,12 +96,14 @@ class SignUp4Fragment : Fragment() {
         binding.submit.setOnClickListener {
             studentDataPostModel.Profile = "images/${studentDataPostModel.student_id}"
             binding.apply {
-                studentDataPostModel.Passcode = otp1.text.toString() + otp2.text.toString() +otp3.text.toString() +otp4.text.toString() +otp5.text.toString() +otp6.text.toString()
+                studentDataPostModel.Passcode =
+                    otp1.text.toString() + otp2.text.toString() + otp3.text.toString() + otp4.text.toString() + otp5.text.toString() + otp6.text.toString()
                 signUpStudent()
             }
 
         }
     }
+
     private fun uploadImageToFirebaseStorage(imageUri: Uri) {
         val compressedImageFile = compressImage(imageUri)
 
@@ -127,14 +125,26 @@ class SignUp4Fragment : Fragment() {
     }
 
     private fun setOtpTextWatchers() {
-        binding.apply{
+        binding.apply {
             val otpFields = listOf(otp1, otp2, otp3, otp4, otp5, otp6)
 
             for (i in otpFields.indices) {
                 otpFields[i].addTextChangedListener(object : TextWatcher {
-                    override fun beforeTextChanged(s: CharSequence?, start: Int, count: Int, after: Int) {}
+                    override fun beforeTextChanged(
+                        s: CharSequence?,
+                        start: Int,
+                        count: Int,
+                        after: Int
+                    ) {
+                    }
 
-                    override fun onTextChanged(s: CharSequence?, start: Int, before: Int, count: Int) {}
+                    override fun onTextChanged(
+                        s: CharSequence?,
+                        start: Int,
+                        before: Int,
+                        count: Int
+                    ) {
+                    }
 
                     override fun afterTextChanged(s: Editable?) {
                         if (!s.isNullOrEmpty() && s.length == 1) {
@@ -173,7 +183,7 @@ class SignUp4Fragment : Fragment() {
 
     override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
         super.onActivityResult(requestCode, resultCode, data)
-        if(resultCode==-1 && requestCode ==101){
+        if (resultCode == -1 && requestCode == 101) {
             uploadImageToFirebaseStorage(imageUri)
             binding.btnUploadImg.setImageURI(imageUri)
         }
@@ -192,8 +202,8 @@ class SignUp4Fragment : Fragment() {
                         if (response.isSuccessful) {
                             val studentDetails = response.body()!!
                             // Process the dashboardData object here
-                            if(studentDetails.statusCode==200){
-                               // findNavController().navigate(R.id.action_signUp4Fragment_to_loginFragment2)
+                            if (studentDetails.statusCode == 200) {
+                                // findNavController().navigate(R.id.action_signUp4Fragment_to_loginFragment2)
                             }
                         } else {
                             Log.e("DashboardData1", response.toString())

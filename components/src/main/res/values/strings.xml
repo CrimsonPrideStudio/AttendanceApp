@@ -53,4 +53,7 @@
     <string name="start">Start</string>
     <string name="floatingactiobbuttonfor_adding_class_and_data">FLoatingActiobButtonFor Adding Class and Data</string>
     <string name="enter_mobile_number">Enter Mobile Number</string>
+    <string name="next">Next</string>
+    <string name="last_name">Last Name</string>
+    <string name="first_name">First Name</string>
 </resources>

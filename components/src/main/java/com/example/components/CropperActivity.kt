@@ -1,17 +1,17 @@
-package com.example.studentapp
+package com.example.components
 
 import android.content.Intent
 import android.net.Uri
-import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
-import com.example.studentapp.Fragments.SignUp4Fragment.Companion.imageUri
+import androidx.appcompat.app.AppCompatActivity
+import com.example.components.Fragments.SignUp4Fragment.Companion.imageUri
 import com.yalantis.ucrop.UCrop
 import java.io.File
 import java.util.*
 
 class CropperActivity : AppCompatActivity() {
 
-    lateinit var destUri:String
+    lateinit var destUri: String
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_cropper)
@@ -19,16 +19,18 @@ class CropperActivity : AppCompatActivity() {
         options.setMaxBitmapSize(500)
 
         destUri = java.lang.StringBuilder(UUID.randomUUID().toString()).append(".jpg").toString()
-        UCrop.of(imageUri, Uri.fromFile(File(cacheDir,destUri))).withOptions(options).withAspectRatio(0F, 0F).useSourceImageAspectRatio().withMaxResultSize(1000,1000).start(this)
+        UCrop.of(imageUri, Uri.fromFile(File(cacheDir, destUri))).withOptions(options)
+            .withAspectRatio(0F, 0F).useSourceImageAspectRatio().withMaxResultSize(1000, 1000)
+            .start(this)
     }
 
     override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
         super.onActivityResult(requestCode, resultCode, data)
-        if(resultCode == RESULT_OK && requestCode == UCrop.REQUEST_CROP){
+        if (resultCode == RESULT_OK && requestCode == UCrop.REQUEST_CROP) {
             imageUri = data?.let { UCrop.getOutput(it) }!!
             setResult(-1)
             finish()
-        }else{
+        } else {
 
         }
     }

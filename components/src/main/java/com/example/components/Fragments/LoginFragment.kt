@@ -69,6 +69,9 @@ class LoginFragment : Fragment() {
 
             }
         }
+        binding.signup.setOnClickListener {
+            findNavController().navigate(R.id.action_loginFragment_to_signUp1Fragment)
+        }
 
 
     }
