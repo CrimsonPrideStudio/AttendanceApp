@@ -64,7 +64,7 @@
                 android:layout_height="match_parent"
                 android:layout_below="@+id/linearLayout"
                 tools:listitem="@layout/home_card_view"
-                android:layout_marginTop="0dp" />
+                android:layout_marginTop="10dp" />
         </RelativeLayout>
 
 </FrameLayout>

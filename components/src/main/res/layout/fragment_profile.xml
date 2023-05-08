@@ -3,7 +3,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".Fragments.Profile">
+    android:layout_gravity="center">
 
     <LinearLayout
         android:layout_width="match_parent"
@@ -16,6 +16,13 @@
         android:paddingBottom="20dp"
         android:weightSum="13">
 
+        <Button
+            android:layout_width="@dimen/dimen_20dp"
+            android:layout_height="@dimen/dimen_20dp"
+            android:layout_gravity="left"
+            android:background="@drawable/back_arrow"
+            />
+
         <de.hdodenhof.circleimageview.CircleImageView
             android:id="@+id/profile"
             android:layout_width="150dp"
@@ -23,19 +30,15 @@
             android:layout_weight="1"
             tools:src="@tools:sample/avatars" />
 
-        <Space
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_weight="1" />
-
         <EditText
             android:id="@+id/name"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:backgroundTint="@color/white"
             android:gravity="center"
-            android:text="Name"
-            android:textColor="@color/Radical_Red"
+            android:hint="Name"
+            android:inputType="textPersonName"
+            android:textColorHint="@color/Radical_Red"
             android:textSize="30sp" />
 
         <Space
@@ -43,102 +46,78 @@
             android:layout_height="wrap_content"
             android:layout_weight="1" />
 
-        <com.google.android.material.textfield.TextInputLayout
+
+        <EditText
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:hint="Email"
             android:layout_weight="1"
-            android:padding="3dp">
+            android:textSize="@dimen/text_size_24sp"
+            android:drawableStart="@drawable/email"
+            android:drawablePadding="@dimen/padding_16dp"
+            />
 
-            <com.google.android.material.textfield.TextInputEditText
-                android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                android:drawableStart="@drawable/phone"
-                android:drawablePadding="10dp"
-                android:hint="Phone" />
 
-        </com.google.android.material.textfield.TextInputLayout>
+
+        <Space
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_weight="1" />
+        <EditText
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:hint="Phone Number"
+            android:layout_weight="1"
+            android:textSize="@dimen/text_size_24sp"
+            android:drawableStart="@drawable/phone"
+            android:drawablePadding="@dimen/padding_16dp"
+            />
+
+        <Space
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_weight="1" />
+        <EditText
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:hint="Roll Number"
+            android:layout_weight="1"
+            android:textSize="@dimen/text_size_24sp"
+            android:drawableStart="@drawable/roll_number"
+            android:drawablePadding="@dimen/padding_16dp"
+            />
 
         <Space
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_weight="1" />
 
-        <com.google.android.material.textfield.TextInputLayout
+        <EditText
             android:layout_width="match_parent"
-
             android:layout_height="wrap_content"
+            android:hint="Semester"
             android:layout_weight="1"
-            android:padding="3dp">
-
-            <com.google.android.material.textfield.TextInputEditText
-                android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                android:drawableStart="@drawable/profile"
-                android:drawablePadding="10dp"
-                android:hint="Name" />
-        </com.google.android.material.textfield.TextInputLayout>
+            android:textSize="@dimen/text_size_24sp"
+            android:drawableStart="@drawable/semester"
+            android:drawablePadding="@dimen/padding_16dp"
+            />
 
         <Space
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_weight="1" />
-
-        <com.google.android.material.textfield.TextInputLayout
+        <EditText
             android:layout_width="match_parent"
-
             android:layout_height="wrap_content"
+            android:hint="Stream"
             android:layout_weight="1"
-            android:padding="3dp">
-
-            <com.google.android.material.textfield.TextInputEditText
-                android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                android:drawableStart="@drawable/rollnumber"
-                android:drawablePadding="10dp"
-                android:hint="Roll Number" />
-        </com.google.android.material.textfield.TextInputLayout>
-
+            android:textSize="@dimen/text_size_24sp"
+            android:drawableStart="@drawable/stream"
+            android:drawablePadding="@dimen/padding_16dp"
+            />
         <Space
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_weight="1" />
-
-        <com.google.android.material.textfield.TextInputLayout
-            android:layout_width="match_parent"
-
-            android:layout_height="wrap_content"
-            android:layout_weight="1"
-            android:padding="3dp">
-
-            <com.google.android.material.textfield.TextInputEditText
-                android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                android:drawableStart="@drawable/stream"
-                android:drawablePadding="10dp"
-                android:hint="Stream" />
-        </com.google.android.material.textfield.TextInputLayout>
-
-        <Space
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_weight="1" />
-
-        <com.google.android.material.textfield.TextInputLayout
-            android:layout_width="match_parent"
-
-            android:layout_height="wrap_content"
-            android:layout_weight="1"
-            android:padding="3dp">
-
-            <com.google.android.material.textfield.TextInputEditText
-                android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                android:drawableStart="@drawable/year"
-                android:drawablePadding="10dp"
-                android:hint="Year" />
-        </com.google.android.material.textfield.TextInputLayout>
-
-
     </LinearLayout>
-
 </FrameLayout>
