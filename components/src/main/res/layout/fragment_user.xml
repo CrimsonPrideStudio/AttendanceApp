@@ -3,6 +3,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     tools:context=".Fragments.UserFragment">
 
     <androidx.viewpager2.widget.ViewPager2
@@ -14,9 +15,11 @@
         />
 
     <com.sagarkoli.chetanbottomnavigation.chetanBottomNavigation
-
+        app:sk_selectedIconColor="?attr/colorPrimary"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        app:sk_backgroundBottomColor="?android:windowBackground"
+        app:sk_circleColor="?android:windowBackground"
         android:id="@+id/navbar"
         android:layout_alignParentBottom="true"
         />

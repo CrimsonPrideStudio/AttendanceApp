@@ -5,152 +5,143 @@
     android:layout_height="match_parent"
     android:gravity="center_horizontal"
     android:orientation="vertical"
-    android:paddingLeft="@dimen/padding_64dp"
-    android:paddingTop="@dimen/padding_32dp"
-    android:paddingRight="@dimen/padding_64dp"
+
+    android:paddingLeft="@dimen/padding_12dp"
+    android:paddingTop="@dimen/padding_12dp"
+    android:paddingRight="@dimen/padding_12dp"
     tools:context=".Fragments.OtpVerification">
 
-    <TextView
-        android:id="@+id/title"
-
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:fontFamily="@font/raleway_bold"
-        android:gravity="center"
-        android:text="Log In Account"
-        android:textAlignment="center"
-        android:textSize="@dimen/text_size_20sp" />
-
     <LinearLayout
+        android:orientation="vertical"
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:gravity="center"
-        android:orientation="vertical">
+        android:layout_height="match_parent">
 
         <ImageView
-            android:id="@+id/image"
             android:layout_width="wrap_content"
-            android:layout_height="200dp"
-            android:layout_marginBottom="@dimen/margin_32dp"
-            android:adjustViewBounds="true"
-            android:src="@drawable/otp_icon" />
+            android:layout_height="wrap_content"
+            android:padding="5dp"
+            android:src="@drawable/back_arrow"
+            android:transitionName="transition_back_arrow_btn" />
 
         <TextView
+            android:id="@+id/title"
+
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginBottom="@dimen/margin_24dp"
+            android:fontFamily="@font/raleway_bold"
             android:gravity="center"
-            android:text="We will send you one time password(OTP)"
-            android:textColor="@color/lightgray"
-            android:textSize="@dimen/text_size_18sp" />
+            android:text="Log In Account"
+            android:textAlignment="center"
+            android:textSize="@dimen/text_size_20sp" />
+
 
         <LinearLayout
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
+            android:layout_height="match_parent"
             android:gravity="center"
-            android:orientation="horizontal">
+            android:orientation="vertical"
+            android:paddingLeft="@dimen/padding_64dp"
+            android:paddingTop="@dimen/padding_12dp"
+            android:paddingRight="@dimen/padding_64dp">
 
-            <androidx.appcompat.widget.AppCompatEditText
-                android:id="@+id/otp1"
-                android:layout_width="@dimen/dimen_otp"
-                android:layout_height="@dimen/dimen_otp"
-                android:backgroundTint="#f36356"
-                android:gravity="center"
-                android:inputType="phone"
-                android:maxLength="1"
-                android:textCursorDrawable="@drawable/custom_cursor_color" />
-
-            <androidx.appcompat.widget.AppCompatEditText
-                android:id="@+id/otp2"
-                android:layout_width="@dimen/dimen_otp"
-                android:layout_height="@dimen/dimen_otp"
-                android:backgroundTint="#f36356"
-                android:gravity="center"
-                android:inputType="phone"
-                android:maxLength="1"
-                android:textCursorDrawable="@drawable/custom_cursor_color" />
-
-            <androidx.appcompat.widget.AppCompatEditText
-                android:id="@+id/otp3"
-                android:layout_width="@dimen/dimen_otp"
-                android:layout_height="@dimen/dimen_otp"
-                android:backgroundTint="#f36356"
-                android:gravity="center"
-                android:inputType="phone"
-                android:maxLength="1"
-                android:textCursorDrawable="@drawable/custom_cursor_color" />
-
-            <androidx.appcompat.widget.AppCompatEditText
-                android:id="@+id/otp4"
-                android:layout_width="@dimen/dimen_otp"
-                android:layout_height="@dimen/dimen_otp"
-                android:backgroundTint="#f36356"
-                android:gravity="center"
-                android:inputType="phone"
-                android:maxLength="1"
-                android:textCursorDrawable="@drawable/custom_cursor_color" />
-
-            <androidx.appcompat.widget.AppCompatEditText
-                android:id="@+id/otp5"
-                android:layout_width="@dimen/dimen_otp"
-                android:layout_height="@dimen/dimen_otp"
-                android:backgroundTint="#f36356"
-                android:gravity="center"
-                android:inputType="phone"
-                android:maxLength="1"
-                android:textCursorDrawable="@drawable/custom_cursor_color" />
-
-            <androidx.appcompat.widget.AppCompatEditText
-                android:id="@+id/otp6"
-                android:layout_width="@dimen/dimen_otp"
-                android:layout_height="@dimen/dimen_otp"
-                android:backgroundTint="#f36356"
-                android:gravity="center"
-                android:inputType="phone"
-                android:maxLength="1"
-                android:textCursorDrawable="@drawable/custom_cursor_color" />
-        </LinearLayout>
-
-        <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginBottom="@dimen/margin_16dp"
-            android:orientation="horizontal"
-            android:gravity="center"
-            android:layout_marginTop="@dimen/margin_16dp">
+            <ImageView
+                android:id="@+id/image"
+                android:layout_width="wrap_content"
+                android:layout_height="200dp"
+                android:layout_marginBottom="@dimen/margin_32dp"
+                android:adjustViewBounds="true"
+                android:src="@drawable/otp_icon" />
 
             <TextView
-                android:layout_width="wrap_content"
+                android:layout_width="match_parent"
                 android:layout_height="wrap_content"
+                android:layout_marginBottom="@dimen/margin_24dp"
                 android:gravity="center"
-                android:text="If you don't receive a code! "
+                android:text="We will send you one time password"
                 android:textColor="@color/lightgray"
                 android:textSize="@dimen/text_size_18sp" />
 
-            <TextView
-                android:layout_width="wrap_content"
+            <LinearLayout
+                android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:clickable="true"
-                android:text="Resend"
-                android:textColor="#f36356"
-                android:textSize="@dimen/text_size_18sp" />
+                android:gravity="center"
+                android:orientation="horizontal">
+
+                <androidx.appcompat.widget.AppCompatEditText
+                    android:id="@+id/otp1"
+                    android:layout_width="@dimen/dimen_otp"
+                    android:layout_height="@dimen/dimen_otp"
+                    android:backgroundTint="#f36356"
+                    android:gravity="center"
+                    android:inputType="phone"
+                    android:maxLength="1"
+                    android:textCursorDrawable="@drawable/custom_cursor_color" />
+
+                <androidx.appcompat.widget.AppCompatEditText
+                    android:id="@+id/otp2"
+                    android:layout_width="@dimen/dimen_otp"
+                    android:layout_height="@dimen/dimen_otp"
+                    android:backgroundTint="#f36356"
+                    android:gravity="center"
+                    android:inputType="phone"
+                    android:maxLength="1"
+                    android:textCursorDrawable="@drawable/custom_cursor_color" />
+
+                <androidx.appcompat.widget.AppCompatEditText
+                    android:id="@+id/otp3"
+                    android:layout_width="@dimen/dimen_otp"
+                    android:layout_height="@dimen/dimen_otp"
+                    android:backgroundTint="#f36356"
+                    android:gravity="center"
+                    android:inputType="phone"
+                    android:maxLength="1"
+                    android:textCursorDrawable="@drawable/custom_cursor_color" />
+
+                <androidx.appcompat.widget.AppCompatEditText
+                    android:id="@+id/otp4"
+                    android:layout_width="@dimen/dimen_otp"
+                    android:layout_height="@dimen/dimen_otp"
+                    android:backgroundTint="#f36356"
+                    android:gravity="center"
+                    android:inputType="phone"
+                    android:maxLength="1"
+                    android:textCursorDrawable="@drawable/custom_cursor_color" />
+
+                <androidx.appcompat.widget.AppCompatEditText
+                    android:id="@+id/otp5"
+                    android:layout_width="@dimen/dimen_otp"
+                    android:layout_height="@dimen/dimen_otp"
+                    android:backgroundTint="#f36356"
+                    android:gravity="center"
+                    android:inputType="phone"
+                    android:maxLength="1"
+                    android:textCursorDrawable="@drawable/custom_cursor_color" />
+
+                <androidx.appcompat.widget.AppCompatEditText
+                    android:id="@+id/otp6"
+                    android:layout_width="@dimen/dimen_otp"
+                    android:layout_height="@dimen/dimen_otp"
+                    android:backgroundTint="#f36356"
+                    android:gravity="center"
+                    android:inputType="phone"
+                    android:maxLength="1"
+                    android:textCursorDrawable="@drawable/custom_cursor_color" />
+            </LinearLayout>
+
+            <androidx.appcompat.widget.AppCompatButton
+                android:id="@+id/send"
+                android:layout_width="match_parent"
+                android:layout_height="50dp"
+                android:layout_marginTop="@dimen/margin_24dp"
+                android:background="@drawable/corner_rounded"
+                android:backgroundTint="#F36356"
+                android:gravity="center"
+                android:paddingHorizontal="10dp"
+                android:paddingVertical="10dp"
+                android:text="Verify"
+                android:textAlignment="center"
+                android:textColor="@color/white"
+                android:textSize="20sp" />
         </LinearLayout>
-
-
-        <androidx.appcompat.widget.AppCompatButton
-            android:id="@+id/send"
-            android:layout_width="match_parent"
-            android:layout_height="50dp"
-            android:layout_marginTop="@dimen/margin_24dp"
-            android:background="@drawable/corner_rounded"
-            android:backgroundTint="#F36356"
-            android:gravity="center"
-            android:paddingHorizontal="10dp"
-            android:paddingVertical="10dp"
-            android:text="Verify"
-            android:textAlignment="center"
-            android:textColor="@color/white"
-            android:textSize="20sp" />
     </LinearLayout>
-
 </FrameLayout>
