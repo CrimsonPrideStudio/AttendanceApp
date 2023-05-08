@@ -11,6 +11,7 @@ import androidx.viewpager2.widget.ViewPager2
 import com.example.components.Fragments.Announcement
 import com.example.components.Fragments.Dashboard
 import com.example.components.Fragments.Setting
+import com.example.components.utils.SharedPrefs
 import com.example.studentapp.Adapter.ViewPagerAdapter
 import com.google.firebase.messaging.FirebaseMessaging
 import com.sagarkoli.chetanbottomnavigation.chetanBottomNavigation
@@ -26,7 +27,12 @@ class SplashActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_splash)
 
+
+
+
         FirebaseMessaging.getInstance().subscribeToTopic(TOPIC)
+
+
 
         FirebaseMessaging.getInstance().token.addOnCompleteListener {
             if (it.isSuccessful) {

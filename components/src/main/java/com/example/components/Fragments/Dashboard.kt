@@ -13,7 +13,7 @@ import android.widget.*
 import androidx.fragment.app.Fragment
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
-import com.example.components.DashboardAdapter
+import com.example.components.Adapter.DashboardAdapter
 import com.example.components.R
 import com.example.components.api.ApiService
 import com.example.components.databinding.AddClassDataformBinding

@@ -47,6 +47,10 @@ class LoginFragment : Fragment() {
         FirebaseApp.initializeApp(requireContext());
         androidId = Secure.getString(requireContext().contentResolver,Secure.ANDROID_ID)
 
+        if(SharedPrefs(requireContext()).isLoggedIn()){
+            findNavController().navigate(R.id.action_loginFragment_to_userFragment)
+        }
+
         Log.d("Android", "Android ID : $androidId")
         return binding.root
     }

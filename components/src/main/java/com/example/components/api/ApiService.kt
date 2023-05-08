@@ -30,10 +30,16 @@ interface ApiInterface {
     fun signupStudent(@Body studentDataPostModel: StudentDataPostModel): Call<StudentSignupResponse>
 
     @POST("/login")
-    fun login(@Body studentLoginPostModel:StudentLoginPostModel):Call<StudentDataResponse>
+    fun login(@Body studentLoginPostModel: StudentLoginPostModel): Call<StudentDataResponse>
 
     @POST("/announcement")
-    fun addAnnouncement(@Body announcementData: AnnouncementData):Call<AnnouncementResponse>
+    fun addAnnouncement(@Body announcementData: AnnouncementData): Call<AnnouncementResponse>
+
+    @GET("/getAnnouncement")
+    suspend  fun getAnnouncement(
+        @Query("semester") semester: Int,
+        @Query("Stream") Stream: String
+    ):Response<GetAnnouncementResponse>
 
 }
 

@@ -22,7 +22,7 @@
             android:textSize="@dimen/text_size_24sp" />
 
         <androidx.recyclerview.widget.RecyclerView
-            android:id="@+id/recycleViewHome"
+            android:id="@+id/recycleViewAnnouncement"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:layout_below="@+id/linearLayout"

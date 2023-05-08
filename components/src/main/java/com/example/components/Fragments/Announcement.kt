@@ -2,7 +2,6 @@ package com.example.components.Fragments
 
 import android.app.AlertDialog
 import android.os.Bundle
-import android.os.Debug
 import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
@@ -10,6 +9,10 @@ import android.view.ViewGroup
 import android.widget.AdapterView
 import android.widget.ArrayAdapter
 import androidx.fragment.app.Fragment
+import androidx.recyclerview.widget.LinearLayoutManager
+import androidx.recyclerview.widget.RecyclerView
+import com.example.components.Adapter.AnnouncementAdapter
+import com.example.components.Adapter.DashboardAdapter
 import com.example.components.R
 import com.example.components.api.ApiService
 import com.example.components.api.NotificationApiService
@@ -22,6 +25,7 @@ import com.example.components.model.PushNotificationModel
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
+import kotlinx.coroutines.withContext
 import retrofit2.Call
 import retrofit2.Callback
 import retrofit2.Response
@@ -35,6 +39,8 @@ class Announcement : Fragment(), AdapterView.OnItemSelectedListener {
     //Api Variables
     private var stream: String = "All"
     private var semester: Int = 0
+
+    private lateinit var layoutManager: RecyclerView.LayoutManager
 
     //Spinners
     private lateinit var yearAdepter: ArrayAdapter<CharSequence>
@@ -69,6 +75,8 @@ class Announcement : Fragment(), AdapterView.OnItemSelectedListener {
         bindingForm.cancelBtn.setOnClickListener {
             dialog.hide()
         }
+
+        getAnnouncement()
     }
 
     private fun hideFabButtonOnStudentApp() {
@@ -121,7 +129,7 @@ class Announcement : Fragment(), AdapterView.OnItemSelectedListener {
             val stream = streamSpinner.selectedItem.toString()
             val announcementId = semester.toString() + stream + title.substring(0, 4)
             val addSubjectDataModel =
-                AnnouncementData(announcementId, title, teacherName, announcement, semester, stream)
+                AnnouncementData(announcementId, title,  announcement,teacherName, semester, stream)
             val response = ApiService.apiInterface.addAnnouncement(addSubjectDataModel)
             response.enqueue(object : Callback<AnnouncementResponse> {
                 override fun onResponse(
@@ -153,6 +161,36 @@ class Announcement : Fragment(), AdapterView.OnItemSelectedListener {
             })
         }
 
+    }
+
+    private fun getAnnouncement() {
+        val scope = CoroutineScope(Dispatchers.IO)
+        scope.launch {
+            try {
+
+                val response = ApiService.apiInterface.getAnnouncement(semester, stream)
+
+                if (response.isSuccessful) {
+                   val announcementData = response.body()!!
+                    Log.e("DashboardData", announcementData.toString())
+                    withContext(Dispatchers.Main) {
+                        binding.apply {
+                            layoutManager = LinearLayoutManager(activity)
+                            recycleViewAnnouncement.layoutManager = layoutManager
+                            val adapter = AnnouncementAdapter(requireContext(),announcementData)
+                            recycleViewAnnouncement.adapter = adapter
+                        }
+                    }
+                    // Process the dashboardData object here
+                } else {
+                    Log.e("DashboardData", response.toString())
+                    // Handle the error here
+                }
+            } catch (e: Exception) {
+                Log.e("DashboardData", e.toString())
+                // Handle the exception here
+            }
+        }
     }
 
     private fun sendNotification(notification: PushNotificationModel) =
