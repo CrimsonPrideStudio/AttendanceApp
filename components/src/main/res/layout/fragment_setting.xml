@@ -2,15 +2,21 @@
 <FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:padding="30dp"
+
     xmlns:tools="http://schemas.android.com/tools"
     xmlns:app="http://schemas.android.com/apk/res-auto">
 
-    <RelativeLayout
-        android:background="@color/black"
+
+
+    <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:padding="30dp"
+        android:orientation="vertical"
+        android:weightSum="10"
+        android:gravity="center_vertical"
         >
+
         <TextView
             android:id="@+id/txt"
             android:layout_width="match_parent"
@@ -21,10 +27,23 @@
             android:textSize="50sp"
             android:text="Setting" />
 
+        <Button
+            android:id="@+id/profile"
+            android:layout_width="match_parent"
+            android:layout_height="60dp"
+            android:layout_marginStart="30dp"
+            android:layout_marginTop="30dp"
+            android:layout_marginEnd="30dp"
+            android:backgroundTint="@color/white"
+            android:drawableStart="@drawable/profile"
+            android:text="Profile"
+            app:strokeColor="@color/Radical_Red"
+            app:strokeWidth="2dp" />
+
         <Switch
             android:id="@+id/notification"
             android:layout_width="match_parent"
-            android:background="@drawable/rectangular_filled_border"
+            android:background="@drawable/rectangularborder"
             android:layout_height="50dp"
             android:layout_below="@+id/txt"
             android:layout_alignParentStart="true"
@@ -41,42 +60,42 @@
 
         <Button
             android:id="@+id/button2"
-            android:layout_width="wrap_content"
-            android:layout_height="50dp"
-            android:layout_below="@+id/notification"
+            android:layout_width="match_parent"
+            android:layout_height="60dp"
+            android:layout_below="@+id/profile"
             android:layout_alignParentStart="true"
             android:layout_alignParentEnd="true"
             android:layout_marginStart="30dp"
             android:layout_marginTop="30dp"
             android:layout_marginEnd="30dp"
-            android:backgroundTint="@color/gray"
+            android:backgroundTint="@color/white"
             android:drawableStart="@drawable/about_icon"
-            android:drawablePadding="10dp"
             android:text="About"
-            android:textColor="@color/Radical_Red"
             app:strokeColor="@color/Radical_Red"
             app:strokeWidth="2dp" />
 
+        <Space
+            android:layout_width="match_parent"
+            android:layout_weight="9"
+
+            android:layout_height="wrap_content"/>
+
+
+
         <Button
             android:id="@+id/button3"
-            android:layout_width="wrap_content"
+            android:layout_width="match_parent"
+            android:layout_gravity="bottom"
             android:layout_height="50dp"
-            android:layout_alignParentStart="true"
-            android:layout_alignParentEnd="true"
-            android:layout_alignParentBottom="true"
             android:layout_marginStart="30dp"
-
             android:layout_marginEnd="30dp"
-            android:layout_marginBottom="30dp"
-            android:backgroundTint="@color/gray"
+            android:backgroundTint="@color/white"
             android:drawableStart="@drawable/logout_icon"
-            android:drawablePadding="10dp"
             android:text="Log Out"
-            android:textColor="@color/Radical_Red"
             app:strokeColor="@color/Radical_Red"
             app:strokeWidth="3dp" />
 
-    </RelativeLayout>
+    </LinearLayout>
 
 
 </FrameLayout>
