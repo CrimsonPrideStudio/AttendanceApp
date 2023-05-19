@@ -20,8 +20,7 @@
             android:layout_width="@dimen/dimen_20dp"
             android:layout_height="@dimen/dimen_20dp"
             android:layout_gravity="left"
-            android:background="@drawable/back_arrow"
-            />
+            android:background="@drawable/back_arrow" />
 
         <de.hdodenhof.circleimageview.CircleImageView
             android:id="@+id/profile"
@@ -35,6 +34,7 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:backgroundTint="@color/white"
+            android:clickable="false"
             android:gravity="center"
             android:hint="Name"
             android:inputType="textPersonName"
@@ -48,44 +48,48 @@
 
 
         <EditText
+            android:id="@+id/email"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:hint="Email"
             android:layout_weight="1"
-            android:textSize="@dimen/text_size_24sp"
+            android:clickable="false"
             android:drawableStart="@drawable/email"
             android:drawablePadding="@dimen/padding_16dp"
-            />
-
+            android:hint="Email"
+            android:textSize="@dimen/text_size_24sp" />
 
 
         <Space
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_weight="1" />
+
         <EditText
+            android:id="@+id/mobileNumber"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:hint="Phone Number"
             android:layout_weight="1"
-            android:textSize="@dimen/text_size_24sp"
+            android:clickable="false"
             android:drawableStart="@drawable/phone"
             android:drawablePadding="@dimen/padding_16dp"
-            />
+            android:hint="Phone Number"
+            android:textSize="@dimen/text_size_24sp" />
 
         <Space
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_weight="1" />
+
         <EditText
+            android:id="@+id/rollNumber"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:hint="Roll Number"
             android:layout_weight="1"
-            android:textSize="@dimen/text_size_24sp"
+            android:clickable="false"
             android:drawableStart="@drawable/roll_number"
             android:drawablePadding="@dimen/padding_16dp"
-            />
+            android:hint="Roll Number"
+            android:textSize="@dimen/text_size_24sp" />
 
         <Space
             android:layout_width="match_parent"
@@ -93,28 +97,32 @@
             android:layout_weight="1" />
 
         <EditText
+            android:id="@+id/semester"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:hint="Semester"
             android:layout_weight="1"
-            android:textSize="@dimen/text_size_24sp"
+            android:clickable="false"
             android:drawableStart="@drawable/semester"
             android:drawablePadding="@dimen/padding_16dp"
-            />
+            android:hint="Semester"
+            android:textSize="@dimen/text_size_24sp" />
 
         <Space
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_weight="1" />
+
         <EditText
+            android:id="@+id/stream"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:hint="Stream"
             android:layout_weight="1"
-            android:textSize="@dimen/text_size_24sp"
+            android:clickable="false"
             android:drawableStart="@drawable/stream"
             android:drawablePadding="@dimen/padding_16dp"
-            />
+            android:hint="Stream"
+            android:textSize="@dimen/text_size_24sp" />
+
         <Space
             android:layout_width="match_parent"
             android:layout_height="wrap_content"

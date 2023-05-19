@@ -48,6 +48,8 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:id="@+id/input"
+            android:inputType="phone"
+            android:maxLength="12"
             android:gravity="center"
             android:hint="Roll Number"
             android:layout_marginBottom="@dimen/margin_16dp"

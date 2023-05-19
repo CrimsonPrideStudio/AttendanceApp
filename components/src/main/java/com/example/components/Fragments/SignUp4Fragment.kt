@@ -15,8 +15,10 @@ import android.view.ViewGroup
 import androidx.activity.result.ActivityResultLauncher
 import androidx.activity.result.contract.ActivityResultContracts
 import androidx.fragment.app.Fragment
+import androidx.navigation.fragment.findNavController
 import com.example.components.CropperActivity
 import com.example.components.Fragments.SignUp1Fragment.Companion.studentDataPostModel
+import com.example.components.R
 import com.example.components.api.ApiService
 import com.example.components.databinding.FragmentSignUp4Binding
 import com.example.components.model.StudentSignupResponse
@@ -34,7 +36,10 @@ import java.io.ByteArrayOutputStream
 import java.io.File
 import java.io.FileOutputStream
 
+
 class SignUp4Fragment : Fragment() {
+
+
 
     val GALLERY_REQ_CODE = 100
     private lateinit var binding: FragmentSignUp4Binding
@@ -93,12 +98,15 @@ class SignUp4Fragment : Fragment() {
             val intent = Intent(Intent.ACTION_PICK, MediaStore.Images.Media.EXTERNAL_CONTENT_URI)
             galleryLauncher.launch(intent)
         }
+
         binding.submit.setOnClickListener {
-            studentDataPostModel.Profile = "images/${studentDataPostModel.student_id}"
+            studentDataPostModel.Profile = "https://firebasestorage.googleapis.com/v0/b/attandenceapp-4084c.appspot.com/o/images%2F${studentDataPostModel.student_id}?alt=media&token=12dd4c09-2f39-45d4-8312-438d93f56cb0"
             binding.apply {
                 studentDataPostModel.Passcode =
                     otp1.text.toString() + otp2.text.toString() + otp3.text.toString() + otp4.text.toString() + otp5.text.toString() + otp6.text.toString()
-                signUpStudent()
+                if(studentDataPostModel.Passcode.length ==6){
+                    signUpStudent()
+                }
             }
 
         }
@@ -203,6 +211,7 @@ class SignUp4Fragment : Fragment() {
                             val studentDetails = response.body()!!
                             // Process the dashboardData object here
                             if (studentDetails.statusCode == 200) {
+                                findNavController().navigate(R.id.action_signUp4Fragment_to_loginFragment)
                                 // findNavController().navigate(R.id.action_signUp4Fragment_to_loginFragment2)
                             }
                         } else {

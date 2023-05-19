@@ -31,7 +31,17 @@
         android:id="@+id/userFragment"
         android:name="com.example.components.Fragments.UserFragment"
         android:label="fragment_user"
-        />
+        >
+        <action
+            android:id="@+id/action_userFragment_to_teacherAttendanceFragment"
+            app:destination="@id/teacherAttendanceFragment" />
+        <action
+            android:id="@+id/action_userFragment_to_loginFragment"
+            app:destination="@id/loginFragment" />
+        <action
+            android:id="@+id/action_userFragment_to_profile2"
+            app:destination="@id/profile2" />
+    </fragment>
     <fragment
         android:id="@+id/signUp1Fragment"
         android:name="com.example.components.Fragments.SignUp1Fragment"
@@ -63,5 +73,18 @@
         android:id="@+id/signUp4Fragment"
         android:name="com.example.components.Fragments.SignUp4Fragment"
         android:label="fragment_sign_up_4"
-        tools:layout="@layout/fragment_sign_up_4" />
+        tools:layout="@layout/fragment_sign_up_4" >
+        <action
+            android:id="@+id/action_signUp4Fragment_to_loginFragment"
+            app:destination="@id/loginFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/teacherAttendanceFragment"
+        android:name="com.example.components.Fragments.TeacherAttendanceFragment"
+        android:label="fragment_teacher_attendance"
+        tools:layout="@layout/fragment_teacher_attendance" />
+    <fragment
+        android:id="@+id/profile2"
+        android:name="com.example.components.Fragments.Profile"
+        android:label="Profile" />
 </navigation>

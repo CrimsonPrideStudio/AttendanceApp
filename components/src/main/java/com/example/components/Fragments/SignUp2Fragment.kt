@@ -5,11 +5,13 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.RadioButton
+import androidx.core.widget.doOnTextChanged
 import androidx.fragment.app.Fragment
 import androidx.navigation.fragment.findNavController
 import com.example.components.Fragments.SignUp1Fragment.Companion.studentDataPostModel
 import com.example.components.R
 import com.example.components.databinding.FragmentSignUp2Binding
+import java.lang.Integer.parseInt
 
 
 class SignUp2Fragment : Fragment() {
@@ -44,6 +46,7 @@ class SignUp2Fragment : Fragment() {
         val selectedRadioButton: RadioButton = binding.root.findViewById(selectedRadioButtonId)
         return selectedRadioButton.text.toString()
     }
+
 
     private fun getDateOfBirth(): String {
         val day = binding.agePicker.dayOfMonth

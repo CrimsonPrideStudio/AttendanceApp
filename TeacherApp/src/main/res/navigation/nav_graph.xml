@@ -8,5 +8,13 @@
     <fragment
         android:id="@+id/userFragment"
         android:name="com.example.components.Fragments.UserFragment"
-        android:label="UserFragment" />
+        android:label="UserFragment" >
+        <action
+            android:id="@+id/action_userFragment_to_teacherAttendanceFragment"
+            app:destination="@id/teacherAttendanceFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/teacherAttendanceFragment"
+        android:name="com.example.components.Fragments.TeacherAttendanceFragment"
+        android:label="TeacherAttendanceFragment" />
 </navigation>

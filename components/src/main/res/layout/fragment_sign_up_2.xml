@@ -81,7 +81,9 @@
                 android:layout_height="match_parent"
                 android:layout_gravity="center"
                 android:layout_marginTop="10dp"
-                android:orientation="horizontal">
+                android:orientation="horizontal"
+                android:checkedButton="@id/male"
+                android:soundEffectsEnabled="true">
 
 
                 <RadioButton
@@ -100,14 +102,6 @@
                     android:text="Female"
                     android:textColor="#f36356" />
 
-
-                <RadioButton
-                    android:id="@+id/others"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_marginLeft="10dp"
-                    android:text="Other"
-                    android:textColor="#f36356" />
             </RadioGroup>
 
 
@@ -135,6 +129,7 @@
                 android:calendarViewShown="false"
                 android:datePickerMode="spinner"
                 android:soundEffectsEnabled="true"
+
                 android:spinnersShown="true" />
 
 

@@ -6,6 +6,7 @@ import android.view.View
 import android.view.ViewGroup
 import android.widget.AdapterView
 import android.widget.ArrayAdapter
+import androidx.core.widget.doOnTextChanged
 import androidx.fragment.app.Fragment
 import androidx.navigation.fragment.findNavController
 import com.example.components.Fragments.SignUp1Fragment.Companion.studentDataPostModel
@@ -20,9 +21,6 @@ class SignUp3Fragment : Fragment(), AdapterView.OnItemSelectedListener {
     private lateinit var yearAdepter: ArrayAdapter<CharSequence>
     private lateinit var streamAdepter: ArrayAdapter<CharSequence>
 
-    //Api Variables
-    private var Stream: String = "All"
-    private var semesterInt: Int = 0
 
     lateinit var binding: FragmentSignUp3Binding
     override fun onCreateView(
@@ -37,15 +35,16 @@ class SignUp3Fragment : Fragment(), AdapterView.OnItemSelectedListener {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
         binding.apply {
-            next3.setOnClickListener {
-
-                studentDataPostModel.student_id = etRollNumber.text.toString()
-                studentDataPostModel.EnrollNumber = etEnrollNumber.text.toString()
-                studentDataPostModel.semester = semesterInt
-                studentDataPostModel.Stream = Stream
-                findNavController().navigate(R.id.action_signUp3Fragment_to_signUp4Fragment)
+            if (validateInput()) {
+                next3.setOnClickListener {
+                    studentDataPostModel.student_id = etRollNumber.text.toString()
+                    studentDataPostModel.EnrollNumber = etEnrollNumber.text.toString()
+                    studentDataPostModel.semester =
+                        (semester.selectedItem.toString()[0].code) - '0'.code;
+                    studentDataPostModel.Stream = stream.selectedItem.toString()
+                    findNavController().navigate(R.id.action_signUp3Fragment_to_signUp4Fragment)
+                }
             }
-
         }
     }
 
@@ -65,6 +64,32 @@ class SignUp3Fragment : Fragment(), AdapterView.OnItemSelectedListener {
 
     }
 
+    private fun validateInput(): Boolean {
+        var rollNumberValid = false;
+        var enrollValid = false;
+        binding.apply {
+            etRollNumber.doOnTextChanged { text, _, _, _ ->
+                if (text!!.length == 12) {
+                    rollNumberLayout.error = null
+                    rollNumberValid = true
+                } else {
+                    rollNumberLayout.error = "Enter Valid Roll Number*"
+                    rollNumberValid = false
+                }
+            }
+            etEnrollNumber.doOnTextChanged { text, _, _, _ ->
+                if (text!!.length == 6) {
+                    enrollNumberLayout.error = null
+                    enrollValid = true
+                } else {
+                    enrollValid = false
+                    enrollNumberLayout.error = "Enter Valid Enrollment Number*"
+                }
+            }
+        }
+        return rollNumberValid && enrollValid
+    }
+
     private fun addDashboardSpinnerFunctionality() {
         binding.semester.adapter = yearAdepter
         binding.semester.onItemSelectedListener = this
@@ -73,10 +98,7 @@ class SignUp3Fragment : Fragment(), AdapterView.OnItemSelectedListener {
     }
 
     override fun onItemSelected(parent: AdapterView<*>?, view: View?, position: Int, id: Long) {
-        if (parent.toString().contains("yearHome")) {
-            semesterInt = position
-        }
-        Stream = binding.stream.selectedItem.toString()
+
     }
 
     override fun onNothingSelected(parent: AdapterView<*>?) {

@@ -2,8 +2,8 @@ package com.example.components.Fragments
 
 import android.annotation.SuppressLint
 import android.app.AlertDialog
-import android.content.Context
-import android.location.LocationManager
+import android.location.Location
+import android.opengl.Visibility
 import android.os.Bundle
 import android.util.Log
 import android.view.LayoutInflater
@@ -11,6 +11,7 @@ import android.view.View
 import android.view.ViewGroup
 import android.widget.*
 import androidx.fragment.app.Fragment
+import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.example.components.Adapter.DashboardAdapter
@@ -21,7 +22,15 @@ import com.example.components.databinding.FragmentDashboardBinding
 import com.example.components.model.AddSubjectDataModel
 import com.example.components.model.AddSubjectResponseModel
 import com.example.components.model.DashboardData
+import com.example.components.model.DashboardDataItem
+import com.example.components.utils.GetLocation
 import com.example.components.utils.PermissionUtil
+import com.example.components.utils.SharedPrefs
+import com.example.components.utils.SharedPrefs.Companion.KEY_STUDENT_ID
+import com.example.components.utils.SharedPrefs.Companion.KEY_STUDENT_NAME
+import com.example.components.utils.SharedPrefs.Companion.KEY_STUDENT_SEMESTER
+import com.example.components.utils.SharedPrefs.Companion.KEY_STUDENT_STREAM
+import com.google.firebase.database.FirebaseDatabase
 import com.google.firebase.messaging.FirebaseMessaging
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Dispatchers
@@ -55,6 +64,12 @@ class Dashboard : Fragment(), AdapterView.OnItemSelectedListener {
     private lateinit var yearAdepter: ArrayAdapter<CharSequence>
     private lateinit var streamAdepter: ArrayAdapter<CharSequence>
 
+    //location
+    lateinit var currentLocation: String
+
+    companion object {
+        lateinit var classData: DashboardDataItem
+    }
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -63,19 +78,18 @@ class Dashboard : Fragment(), AdapterView.OnItemSelectedListener {
         binding = FragmentDashboardBinding.inflate(layoutInflater)
         bindingForm = AddClassDataformBinding.inflate(layoutInflater)
 
-        Log.e("this","Dashboard")
+        Log.e("this", "Dashboard")
         initializeSpinners()
         initializeForm()
         addDashboardSpinnerFunctionality()
         hideFabButtonOnStudentApp()
-
+        getCurrentLocation()
 
         return binding.root
     }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-
 
         getDashboardData()
         buttonClickListener()
@@ -99,10 +113,10 @@ class Dashboard : Fragment(), AdapterView.OnItemSelectedListener {
 
     private fun initializeForm() {
 
-            addFormSpinnerFunctionality()
-            dialogBuilder = AlertDialog.Builder(requireContext(), R.style.customAlert)
-            dialogBuilder.setView(bindingForm.root)
-            dialog = dialogBuilder.create()
+        addFormSpinnerFunctionality()
+        dialogBuilder = AlertDialog.Builder(requireContext(), R.style.customAlert)
+        dialogBuilder.setView(bindingForm.root)
+        dialog = dialogBuilder.create()
 
 
     }
@@ -141,42 +155,57 @@ class Dashboard : Fragment(), AdapterView.OnItemSelectedListener {
         if (requireContext().packageName.contains("student")) {
             binding.apply {
                 addClassFloatingButton.hide()
+                yearHome.visibility = View.GONE
+                streamHome.visibility = View.GONE
             }
+            semester  = 8
+            stream = SharedPrefs(requireContext()).getStudentDataByOne(KEY_STUDENT_STREAM)!!
             val topic = "/topics/${semester}${stream}"
-            Log.e("MainActivty",topic)
+            Log.e("MainActivty", topic)
             FirebaseMessaging.getInstance().subscribeToTopic(topic)
+
         }
     }
 
-    private fun addDashboardData(){
+    private fun addDashboardData() {
         bindingForm.apply {
             val subjectName = subjectNameInput.text.toString()
             val teacherName = teacherNameInput.text.toString()
-            val semester = (yearSpinner.selectedItem.toString()[0].code) - '0'.code;
-            val stream  = binding.streamHome.selectedItem.toString()
-            val id = semester.toString()+stream+subjectName.substring(0,4)
+            val semesterInner = (yearSpinner.selectedItem.toString()[0].code) - '0'.code;
+            val streamInner = streamSpinner.selectedItem.toString()
+            Log.e("DashboardDataasdasd", streamInner.toString())
+            val id = semesterInner.toString() + streamInner + subjectName.substring(0, 4)
             val present = 0
             val totalStudent = totalStudentsInput.text.toString().toInt()
             val updateDate = ""
-            val addSubjectDataModel = AddSubjectDataModel(present,stream,subjectName,totalStudent,updateDate,id,semester,teacherName)
+            val addSubjectDataModel = AddSubjectDataModel(
+                present,
+                streamInner,
+                subjectName,
+                totalStudent,
+                updateDate,
+                id,
+                semesterInner,
+                teacherName
+            )
             val response = ApiService.apiInterface.addSubjectData(addSubjectDataModel)
             response.enqueue(object : Callback<AddSubjectResponseModel> {
                 override fun onResponse(
                     call: Call<AddSubjectResponseModel>,
                     response: Response<AddSubjectResponseModel>
                 ) {
-                    if(response.isSuccessful){
+                    if (response.isSuccessful) {
                         val resData = response.body()
                         if (resData != null) {
-                            Log.e("DashboardData",resData.message.toString())
+                            Log.e("DashboardData", resData.message.toString())
                         }
-                    }else{
-                        Log.e("Error","Error")
+                    } else {
+                        Log.e("Error", response.errorBody().toString())
                     }
                 }
 
                 override fun onFailure(call: Call<AddSubjectResponseModel>, t: Throwable) {
-                    Log.e("Error",t.toString())
+                    Log.e("Error", t.toString())
                 }
 
             })
@@ -203,7 +232,12 @@ class Dashboard : Fragment(), AdapterView.OnItemSelectedListener {
                             adapter.setOnItemClickListener(object :
                                 DashboardAdapter.OnnItemClickListener {
                                 override fun onItemClick(position: Int) {
-                                    Log.e("Added", "Clicked")
+                                    classData = dashboardData[position]
+                                    if (requireContext().packageName.contains("student")) {
+                                        sendStudentData()
+                                    } else {
+                                        findNavController().navigate(R.id.action_userFragment_to_teacherAttendanceFragment)
+                                    }
                                 }
 
                             })
@@ -221,11 +255,54 @@ class Dashboard : Fragment(), AdapterView.OnItemSelectedListener {
         }
     }
 
+    private fun sendStudentData() {
+        val ref = FirebaseDatabase.getInstance()
+            .getReference("Portal/${classData.semester}/${classData.Stream}/${classData.Subject}")
+
+        ref.get().addOnSuccessListener {
+            if (it.value != "") {
+                val locationA = stringToLocation(it.value.toString())
+                val locationB = stringToLocation(currentLocation)
+                val refToAttendance =
+                    SharedPrefs(requireContext()).getStudentDataByOne(KEY_STUDENT_ID)?.let { it1 ->
+                        FirebaseDatabase.getInstance()
+                            .getReference("Attendance/${classData.semester}/${classData.Stream}/${classData.Subject}")
+                            .child(it1).setValue(SharedPrefs(requireContext()).getStudentDataByOne(
+                                KEY_STUDENT_NAME))
+                    }
+
+
+            } else {
+                Toast.makeText(requireContext(), "POrtal Havent Opend", Toast.LENGTH_SHORT).show()
+            }
+        }
+
+    }
+
+    private fun distanceCalculate(locationA: Location, locationB: Location): Int {
+        val startPoint = Location("Start")
+        startPoint.latitude = locationA.latitude
+        startPoint.longitude = locationA.longitude
+        val endPoint = Location("Start")
+        endPoint.latitude = locationB.latitude
+        endPoint.longitude = locationB.longitude
+        return startPoint.distanceTo(endPoint).toInt()
+    }
+
+    private fun stringToLocation(location: String): Location {
+        val currLocation = location
+        val startPoint = Location("Start")
+        startPoint.latitude = currLocation.split(":")[0].toDouble()
+        startPoint.longitude = currLocation.split(":")[1].toDouble()
+        return startPoint
+    }
+
     override fun onItemSelected(parent: AdapterView<*>?, view: View?, position: Int, id: Long) {
         if (parent.toString().contains("yearHome")) {
             semester = position
         }
         stream = binding.streamHome.selectedItem.toString()
+
         getDashboardData()
 
     }
@@ -234,11 +311,11 @@ class Dashboard : Fragment(), AdapterView.OnItemSelectedListener {
         Log.e("This", "Nothing Selected")
     }
 
-    private fun getCurrentLocation(){
-        val locationManager: LocationManager =
-            context?.getSystemService(Context.LOCATION_SERVICE) as LocationManager
-        if(PermissionUtil.requestLocationPermission(requireActivity())){
-
+    private fun getCurrentLocation() {
+        if (PermissionUtil.requestLocationPermission(requireActivity())) {
+            GetLocation.getCurrentLocation(requireContext(), requireActivity()) { location ->
+                currentLocation = location
+            }
         }
     }
 

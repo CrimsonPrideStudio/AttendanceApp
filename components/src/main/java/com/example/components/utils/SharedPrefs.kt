@@ -52,6 +52,7 @@ class SharedPrefs(context: Context) {
 
     fun clearSharedPref() {
         editor!!.clear()
+        editor!!.apply()
     }
 
     fun isLoggedIn(): Boolean {
@@ -61,5 +62,7 @@ class SharedPrefs(context: Context) {
     fun getStudentDataByOne(key: String): String? {
         return pref.getString(key, "")
     }
-
+    fun getSemester():Int?{
+        return  pref.getInt(KEY_STUDENT_SEMESTER,0)
+    }
 }

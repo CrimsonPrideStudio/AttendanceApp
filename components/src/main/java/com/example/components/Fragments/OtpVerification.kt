@@ -22,9 +22,14 @@ import com.google.firebase.auth.PhoneAuthProvider
 import java.util.concurrent.TimeUnit
 import android.app.Activity
 import android.content.Context
+import android.content.Context.VIBRATOR_SERVICE
+import android.os.Build
+import android.os.VibrationEffect
+import android.os.Vibrator
 import android.view.inputmethod.InputMethodManager
 import android.widget.Toast
 import com.example.components.Fragments.LoginFragment.Companion.studentDetails
+import com.example.components.utils.LoadingDialog
 import com.example.components.utils.hideKeyboard
 
 
@@ -38,18 +43,23 @@ class OtpVerification : Fragment() {
 
     lateinit var binding: FragmentOtpVerificationBinding
 
+
+    lateinit var loadingDialog: LoadingDialog
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?
     ): View {
         binding = FragmentOtpVerificationBinding.inflate(layoutInflater)
        // firebaseManager = FirebaseManager()
        // firebaseManager.getAuth()?.firebaseAuthSettings?.setAppVerificationDisabledForTesting(true)
+
+        loadingDialog = LoadingDialog(requireActivity())
         return binding.root
     }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
         binding.send.setOnClickListener {
+            loadingDialog.startLoadingDialog()
             verifyPasscode()
         }
         setOtpTextWatchers();
@@ -73,11 +83,14 @@ class OtpVerification : Fragment() {
                     if (!s.isNullOrEmpty() && s.length == 1) {
                         if (i < otpFields.lastIndex) {
                             otpFields[i + 1].requestFocus()
+
+
                         } else {
                             otpFields.last().clearFocus()
                           hideKeyboard()
 
                         }
+                        vibration(requireContext())
                     } else if (s.isNullOrEmpty()) {
                         if (i > 0) {
                             otpFields[i - 1].requestFocus()
@@ -88,7 +101,13 @@ class OtpVerification : Fragment() {
         }
         }
     }
-
+    private fun vibration(context: Context) {
+        if (Build.VERSION.SDK_INT >= 26) {
+            (context.getSystemService(VIBRATOR_SERVICE) as Vibrator).vibrate(VibrationEffect.createOneShot(100, VibrationEffect.DEFAULT_AMPLITUDE))
+        } else {
+            (context.getSystemService(VIBRATOR_SERVICE) as Vibrator).vibrate(100)
+        }
+    }
     private fun verifyPasscode(){
                binding.apply {
                    val code: String =
@@ -99,6 +118,7 @@ class OtpVerification : Fragment() {
                        Toast.LENGTH_SHORT
                    ).show()
                    if (studentDetails.Passcode == code) {
+                       loadingDialog.dismissDialog()
                        findNavController().navigate(R.id.action_otpVerification_to_userFragment)
                    }
                }

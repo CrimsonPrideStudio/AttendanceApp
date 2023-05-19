@@ -41,6 +41,9 @@ interface ApiInterface {
         @Query("Stream") Stream: String
     ):Response<GetAnnouncementResponse>
 
+    @POST("/attendance")
+    fun sendAttendance(@Body sendAttendanceList: SendAttendanceList):Call<AnnouncementResponse>
+
 }
 
 object ApiService {

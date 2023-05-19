@@ -66,7 +66,7 @@
 
 
             <com.google.android.material.textfield.TextInputLayout
-                android:id="@+id/fullName"
+                android:id="@+id/rollNumberLayout"
                 style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
@@ -79,6 +79,8 @@
                 app:endIconTint="#f26356"
                 app:hintTextColor="@color/black"
                 app:startIconDrawable="@drawable/ic_baseline_person_24"
+                app:counterMaxLength="12"
+                app:counterEnabled="true"
                 app:startIconTint="#f36356">
 
 
@@ -86,7 +88,8 @@
                     android:id="@+id/etRollNumber"
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
-                    android:inputType="text"
+                    android:inputType="phone"
+                    android:maxLength="12"
                     android:textColor="@color/black"
                     android:textCursorDrawable="@null" />
 
@@ -97,6 +100,7 @@
             <com.google.android.material.textfield.TextInputLayout
 
                 style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
+                android:id="@+id/enrollNumberLayout"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:hint="Enrollment Number"
@@ -107,6 +111,8 @@
                 app:endIconTint="#f34356"
                 app:hintTextColor="@color/black"
                 app:startIconDrawable="@drawable/email_icon"
+                app:counterEnabled="true"
+                app:counterMaxLength="6"
                 app:startIconTint="#f34356">
 
 
@@ -115,6 +121,7 @@
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
                     android:inputType="text"
+                    android:maxLength="6"
                     android:textColor="@color/black"
                     android:textCursorDrawable="@null" />
 
