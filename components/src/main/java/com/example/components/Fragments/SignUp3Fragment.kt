@@ -35,7 +35,7 @@ class SignUp3Fragment : Fragment(), AdapterView.OnItemSelectedListener {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
         binding.apply {
-            if (validateInput()) {
+
                 next3.setOnClickListener {
                     studentDataPostModel.student_id = etRollNumber.text.toString()
                     studentDataPostModel.EnrollNumber = etEnrollNumber.text.toString()
@@ -44,7 +44,7 @@ class SignUp3Fragment : Fragment(), AdapterView.OnItemSelectedListener {
                     studentDataPostModel.Stream = stream.selectedItem.toString()
                     findNavController().navigate(R.id.action_signUp3Fragment_to_signUp4Fragment)
                 }
-            }
+
         }
     }
 

@@ -3,6 +3,7 @@ package com.example.components.Fragments
 import android.annotation.SuppressLint
 import android.os.Bundle
 import android.provider.Settings
+import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -37,13 +38,15 @@ class SignUp1Fragment : Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
-        if (validateInput()) {
+
 
             binding.signupNextButton.setOnClickListener {
-                getStudentDetailsFromUser()
-                findNavController().navigate(R.id.action_signUp1Fragment_to_signUp2Fragment)
+
+                    getStudentDetailsFromUser()
+                    findNavController().navigate(R.id.action_signUp1Fragment_to_signUp2Fragment)
+
             }
-        }
+
 
 
         binding.login.setOnClickListener {
@@ -66,35 +69,12 @@ class SignUp1Fragment : Fragment() {
                     firstNameValid = false
                 }
             }
-            etLastName.doOnTextChanged { text, _, _, _ ->
-                if (text!!.isNotEmpty()) {
-                    lastNameLayout.error = null
-                    lastNameValid = true
-                } else {
-                    lastNameLayout.error = "Required*"
-                    lastNameValid = false
-                }
-            }
-            etEmail.doOnTextChanged { text, _, _, _ ->
-                if (isValidEmailId(text.toString())) {
-                    emailLayout.error = null
-                    emailValid = true
-                } else {
-                    emailLayout.error = "Invalid Email Format*"
-                    emailValid = false
-                }
-            }
 
-            etMobileNumber.doOnTextChanged { text, _, _, _ ->
-                if (text!!.length == 10) {
-                    fullNameLayout.error = null
-                    mobileNumberValid = true
-                } else {
-                    fullNameLayout.error = "Required*"
-                    mobileNumberValid = false
-                }
-            }
         }
+        Log.e("Signup1",firstNameValid.toString())
+        Log.e("Signup2",lastNameValid.toString())
+        Log.e("Signup3",emailValid.toString())
+        Log.e("Signup4",mobileNumberValid.toString())
         return firstNameValid && lastNameValid && emailValid && mobileNumberValid
     }
 
