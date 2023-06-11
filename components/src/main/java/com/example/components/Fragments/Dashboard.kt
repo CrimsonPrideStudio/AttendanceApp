@@ -24,6 +24,7 @@ import com.example.components.model.AddSubjectResponseModel
 import com.example.components.model.DashboardData
 import com.example.components.model.DashboardDataItem
 import com.example.components.utils.GetLocation
+import com.example.components.utils.MyAlertDialog
 import com.example.components.utils.PermissionUtil
 import com.example.components.utils.SharedPrefs
 import com.example.components.utils.SharedPrefs.Companion.KEY_STUDENT_ID
@@ -256,6 +257,8 @@ class Dashboard : Fragment(), AdapterView.OnItemSelectedListener {
     }
 
     private fun sendStudentData() {
+        val myAlertDialog = MyAlertDialog(requireContext())
+        myAlertDialog.builder.show()
         val ref = FirebaseDatabase.getInstance()
             .getReference("Portal/${classData.semester}/${classData.Stream}/${classData.Subject}")
 
@@ -273,7 +276,7 @@ class Dashboard : Fragment(), AdapterView.OnItemSelectedListener {
 
 
             } else {
-                Toast.makeText(requireContext(), "POrtal Havent Opend", Toast.LENGTH_SHORT).show()
+
             }
         }
 

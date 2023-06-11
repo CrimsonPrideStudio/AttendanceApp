@@ -33,7 +33,7 @@ class UserFragment : Fragment() {
             val fragments = listOf(Announcement(), Dashboard(), Setting())
             viewPager.adapter = ViewPagerAdapter(requireActivity(), fragments)
 
-            navbar.add(chetanBottomNavigation.Model(1, com.example.components.R.drawable.profile))
+            navbar.add(chetanBottomNavigation.Model(1,R.drawable.notificationbellalarm))
             navbar.add(
                 chetanBottomNavigation.Model(
                     2,

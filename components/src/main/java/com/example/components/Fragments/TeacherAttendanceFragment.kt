@@ -13,16 +13,18 @@ import com.example.components.Adapter.AttendanceAdapter
 import com.example.components.Fragments.Dashboard.Companion.classData
 import com.example.components.R
 import com.example.components.api.ApiService
+import com.example.components.api.NotificationApiService
 import com.example.components.databinding.FragmentTeacherAttendanceBinding
-import com.example.components.model.AnnouncementResponse
-import com.example.components.model.SendAttendanceList
-import com.example.components.model.StudentAttendance
+import com.example.components.model.*
 import com.example.components.utils.GetLocation
 import com.example.components.utils.PermissionUtil
 import com.google.firebase.database.DataSnapshot
 import com.google.firebase.database.DatabaseError
 import com.google.firebase.database.FirebaseDatabase
 import com.google.firebase.database.ValueEventListener
+import kotlinx.coroutines.CoroutineScope
+import kotlinx.coroutines.Dispatchers
+import kotlinx.coroutines.launch
 import retrofit2.Call
 import retrofit2.Callback
 import retrofit2.Response
@@ -60,6 +62,27 @@ class TeacherAttendanceFragment : Fragment() {
         binding.date.text = classData.Update_Date
     }
 
+    private fun sendNotification(notification: PushNotificationModel) =
+        CoroutineScope(Dispatchers.IO).launch {
+            try {
+                val response = NotificationApiService.notificationAPi.postNotification(notification)
+                if (response.isSuccessful) {
+                    Log.d("MainACTIVITY", "Response ${response}")
+                } else {
+                    val errorBody = response.errorBody()?.string()
+                    val errorMessage = if (errorBody.isNullOrEmpty()) {
+                        response.message()
+                    } else {
+                        errorBody
+                    }
+                    Log.e("MainACTIVITY", "Error: ${response.code()}, Message: $errorMessage")
+                }
+            } catch (e: java.lang.Exception) {
+                Log.e("MainACTIVITY", e.toString())
+            }
+
+
+        }
     @SuppressLint("SetTextI18n")
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
@@ -73,6 +96,13 @@ class TeacherAttendanceFragment : Fragment() {
                     ) { location ->
                         sendTeacherData(location)
                         getPresentStudentList()
+                        PushNotificationModel(
+                            NotificationDataModel(classData.Subject, "Portal Opened Click Here..."),
+                            "/topics/${classData.semester}${classData.Stream}"
+                        ).also {
+
+                            sendNotification(it)
+                        }
                     }
                 }
             }

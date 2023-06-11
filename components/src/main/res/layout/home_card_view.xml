@@ -32,8 +32,8 @@
                     android:layout_width="wrap_content"
                     android:id="@+id/subjectAndSemText"
                     android:layout_height="wrap_content"
-                    android:text="Compiler Design, 7th"
-                    android:textAlignment="center"
+                    android:text="Multimedia And Computer Vision,8"
+
                     android:textColor="@color/Radical_Red"
                     android:textSize="18sp"
                     />
