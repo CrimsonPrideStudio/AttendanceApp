@@ -21,7 +21,8 @@ class Profile : Fragment() {
         binding = FragmentProfileBinding.inflate(layoutInflater)
         val sharedPrefs = SharedPrefs(requireContext())
         binding.apply {
-           Glide.with(requireContext()).load(sharedPrefs.getStudentDataByOne(SharedPrefs.KEY_PHOTO_URI)).transition(DrawableTransitionOptions.withCrossFade()).into(profile)
+            val photoUrl = "https://firebasestorage.googleapis.com/v0/b/attandenceapp-4084c.appspot.com/o/images%2F${SharedPrefs.KEY_STUDENT_ID}?alt=media&token=37dbd09b-a56b-4243-b454-d10e1642d84a&_gl=1*dw42pg*_ga*MTU2MDQ1NTczNy4xNjgyOTU0NDQ5*_ga_CW55HF8NVT*MTY4NjQ4Mzk0MS4xMC4xLjE2ODY0ODM5NTUuMC4wLjA."
+           Glide.with(requireContext()).load(sharedPrefs.getStudentDataByOne(photoUrl)).transition(DrawableTransitionOptions.withCrossFade()).into(profile)
             name.setText(sharedPrefs.getStudentDataByOne(SharedPrefs.KEY_STUDENT_NAME))
             email.setText(sharedPrefs.getStudentDataByOne(SharedPrefs.KEY_EMAIL))
             mobileNumber.setText(sharedPrefs.getStudentDataByOne(SharedPrefs.KEY_PHONE_NUMBER))
