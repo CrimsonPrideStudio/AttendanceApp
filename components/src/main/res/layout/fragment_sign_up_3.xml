@@ -34,7 +34,7 @@
                 android:layout_centerVertical="true"
                 android:text="Create Account"
                 android:textAllCaps="true"
-                android:textColor="#f36356"
+                android:textColor="@color/colorLightPrimary"
                 android:textSize="40sp"
                 android:transitionName="transition_title_text" />
 
@@ -76,12 +76,12 @@
                 app:boxStrokeColor="@color/black"
                 app:boxStrokeWidthFocused="2dp"
                 app:endIconMode="clear_text"
-                app:endIconTint="#f26356"
+                app:endIconTint="@color/colorLightPrimary"
                 app:hintTextColor="@color/black"
                 app:startIconDrawable="@drawable/ic_baseline_person_24"
                 app:counterMaxLength="12"
                 app:counterEnabled="true"
-                app:startIconTint="#f36356">
+                app:startIconTint="@color/colorLightPrimary">
 
 
                 <com.google.android.material.textfield.TextInputEditText
@@ -108,12 +108,12 @@
                 app:boxStrokeColor="@color/black"
                 app:boxStrokeWidthFocused="2dp"
                 app:endIconMode="clear_text"
-                app:endIconTint="#f34356"
+                app:endIconTint="@color/colorLightPrimary"
                 app:hintTextColor="@color/black"
                 app:startIconDrawable="@drawable/email_icon"
                 app:counterEnabled="true"
                 app:counterMaxLength="6"
-                app:startIconTint="#f34356">
+                app:startIconTint="@color/colorLightPrimary">
 
 
                 <com.google.android.material.textfield.TextInputEditText
@@ -136,7 +136,7 @@
                 android:layout_marginTop="@dimen/margin_2dp"
                 android:layout_marginBottom="@dimen/margin_2dp"
                 android:autofillHints="Semester"
-                android:backgroundTint="#f36356"
+                android:backgroundTint="@color/colorLightPrimary"
                 android:dropDownWidth="wrap_content"
                 android:gravity="center" />
 
@@ -149,7 +149,7 @@
                 android:layout_marginTop="@dimen/margin_2dp"
                 android:layout_marginBottom="@dimen/margin_2dp"
                 android:autofillHints="Stream"
-                android:backgroundTint="#f36356"
+                android:backgroundTint="@color/colorLightPrimary"
                 android:dropDownWidth="wrap_content"
                 android:gravity="center" />
 
@@ -159,14 +159,14 @@
         <androidx.appcompat.widget.AppCompatButton
             android:id="@+id/next3"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="30dp"
-            android:backgroundTint="#f36356"
+            android:layout_height="60dp"
+            android:layout_marginTop="50dp"
+            android:backgroundTint="@color/colorLightPrimary"
             android:elevation="5dp"
             android:gravity="center"
-            android:padding="@dimen/padding_12dp"
-            android:text="Next"
-            android:textColor="@color/white"
+            android:text="@string/next"                android:textColor="@color/colorOnLightPrimary"
+
+            android:textSize="@dimen/text_size_18sp"
             android:transitionName="transition_next_btn" />
 
 

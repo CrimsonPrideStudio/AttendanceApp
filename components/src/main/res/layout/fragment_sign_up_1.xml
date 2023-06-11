@@ -34,7 +34,7 @@
                 android:layout_centerVertical="true"
                 android:text="Create Account"
                 android:textAllCaps="true"
-
+                android:textColor="@color/Radical_Red"
                 android:textSize="40sp"
                 android:transitionName="transition_title_text" />
 
@@ -187,11 +187,11 @@
             android:layout_width="match_parent"
             android:layout_height="60dp"
             android:layout_marginTop="50dp"
-
-
+            android:backgroundTint="@color/colorLightPrimary"
             android:elevation="5dp"
             android:gravity="center"
             android:text="@string/next"
+            android:textColor="@color/colorOnLightPrimary"
             android:textSize="@dimen/text_size_18sp"
             android:transitionName="transition_next_btn" />
 
